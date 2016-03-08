@@ -18,23 +18,21 @@ $(document).ready(function() {
   // var p2UFE = 0;
   var $p1points = $('#p1points');
   var $p2points = $('#p2points');
-  // var $p1set1 = $('#p1set1');
   var activeSet = 1;
-  // var $p1activeSet = $('#p1set' + activeSet + '')
 
 
-
+// Player 1 Button Commands
   $('button1').on('click', function(event) {
     var $this = $(this);
     if ($this.attr('id') === 'p1ace') {
       var p1pointScore = $p1points.text();
-      var count = parseInt(p1pointScore);
-      if (count === 0 || count === 15) {
-        count +=15
-      } else if (count === 30) {
-        count +=10
-      } else if (count === 40) {
-        count = 0;
+      var p1count = parseInt(p1pointScore);
+      if (p1count === 0 || p1count === 15) {
+        p1count +=15
+      } else if (p1count === 30) {
+        p1count +=10
+      } else if (p1count === 40) {
+        p1count = 0;
         if (p1games < 7) {
           p1games +=1;
           console.log(activeSet);
@@ -81,30 +79,92 @@ $(document).ready(function() {
         console.log('end')
       )
       ;
-      $p1points.text(count)
+      $p1points.text(p1count)
     } else if ($this.attr('id') === 'p1winner') {
       var p1pointScore = $p1points.text();
-      var count = parseInt(p1pointScore);
-      if (count === 0 || count === 15) {
-        count +=15
-      } else if (count === 30) {
-        count +=10
-      } else (count = 0);
+      var p1count = parseInt(p1pointScore);
+      if (p1count === 0 || p1count === 15) {
+        p1count +=15
+      } else if (p1count === 30) {
+        p1count +=10
+      } else (p1count = 0);
       $p1points.text(count)
     } else if ($this.attr('id') === 'p1oppUFE') {
       var p1pointScore = $p1points.text();
-      var count = parseInt(p1pointScore);
-      if (count === 0 || count === 15) {
-        count +=15
-      } else if (count === 30) {
-        count +=10
-      } else (count = 0);
-      $p1points.text(count)
+      var p1count = parseInt(p1pointScore);
+      if (p1count === 0 || p1count === 15) {
+        p1count +=15
+      } else if (p1count === 30) {
+        p1count +=10
+      } else (p1count = 0);
+      $p1points.text(p1count)
     } else if ($this.attr('id') === 'p1fault') {
       console.log('clicking p1fault');
     }
+  })
+// End of Player 1 Button Commands
+
+// Player 2 Button Commands
+  $('button2').on('click', function(event) {
+    var $this = $(this);
+    if ($this.attr('id') === 'p2ace') {
+      var p2pointScore = $p2points.text();
+      var p2count = parseInt(p2pointScore);
+      if (p2count === 0 || p2count === 15) {
+        p2count +=15
+      } else if (p2count === 30) {
+        p2count +=10
+      } else if (p2count === 40) {
+        p2count = 0;
+        if (p2games < 7) {
+          p2games +=1;
+          console.log(activeSet);
+          // console.log($p1activeSet);
+          if (activeSet === 1) {
+            $p2activeSet = $('#p2set1')
+          } else if (activeSet === 2) {
+            $p2activeSet = $('#p2set2')
+          } else if (activeSet === 3) {
+            $p2activeSet = $('#p2set3')
+          } else if (activeSet === 4) {
+            $p2activeSet = $('#p2set4')
+          } else if (activeSet === 5) {
+            $p2activeSet = $('#p2set5')
+          } else if (activeSet === 6) {
+            $p2activeSet = $('#p2set6')
+          } else {
+            $p2activeSet = $('#p2set7')
+          }
+          $p2activeSet.text(p2games);
+        } else if (p2games === 7) {
+          activeSet +=1;
+          p2games = 1;
+          console.log(p2games);
+          console.log(activeSet);
+          if (activeSet === 1) {
+            $p2activeSet = $('#p2set1')
+          } else if (activeSet === 2) {
+            $p2activeSet = $('#p2set2')
+          } else if (activeSet === 3) {
+            $p2activeSet = $('#p2set3')
+          } else if (activeSet === 4) {
+            $p2activeSet = $('#p2set4')
+          } else if (activeSet === 5) {
+            $p2activeSet = $('#p2set5')
+          } else if (activeSet === 6) {
+            $p2activeSet = $('#p2set6')
+          } else {
+            $p2activeSet = $('#p2set7')
+          }
+          $p2activeSet.text(p2games);
+        }
+      } else (
+        console.log('end')
+      )
+      ;
+      $p2points.text(p2count)
+    }
 
   })
-
 
 })

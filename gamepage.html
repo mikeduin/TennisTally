@@ -23,14 +23,17 @@
         <thead>
               <th class="text-center"> Player </th>
               <th class="text-center"> Pts </th>
+              <th class="text-center"> Adv </th>
         </thead>
         <tr>
           <td> P1 </td>
-          <td id = "p1game"> 0 </td>
+          <td id = "p1points"> 0 </td>
+          <td id = "p1adv">  </td>
         </tr>
         <tr>
           <td> P2 </td>
-          <td id = "p2game"> 0 </td>
+          <td id = "p2points"> 0 </td>
+          <td id = "p1adv">  </td>
         </tr>
       </table>
     </div>
@@ -54,25 +57,25 @@
         <tbody>
           <tr>
             <td> Player 1 </td>
-            <td id="p1set1">  </td>
-            <td id="p1set2">  </td>
-            <td id="p1set3">  </td>
-            <td id="p1set4">  </td>
-            <td id="p1set5">  </td>
-            <td id="p1set6">  </td>
-            <td id="p1set7">  </td>
-            <td id="p1total">  </td>
+            <td class = "text-center" id="p1set1">  </td>
+            <td class = "text-center" id="p1set2">  </td>
+            <td class = "text-center" id="p1set3">  </td>
+            <td class = "text-center" id="p1set4">  </td>
+            <td class = "text-center" id="p1set5">  </td>
+            <td class = "text-center" id="p1set6">  </td>
+            <td class = "text-center" id="p1set7">  </td>
+            <td class = "text-center" id="p1total">  </td>
           </tr>
           <tr>
             <td> Player 2 </td>
-            <td id="p2set1">  </td>
-            <td id="p2set2">  </td>
-            <td id="p2set3">  </td>
-            <td id="p2set4">  </td>
-            <td id="p2set5">  </td>
-            <td id="p2set6">  </td>
-            <td id="p2set7">  </td>
-            <td id="p2total">  </td>
+            <td class = "text-center" id="p2set1">  </td>
+            <td class = "text-center" id="p2set2">  </td>
+            <td class = "text-center" id="p2set3">  </td>
+            <td class = "text-center" id="p2set4">  </td>
+            <td class = "text-center" id="p2set5">  </td>
+            <td class = "text-center" id="p2set6">  </td>
+            <td class = "text-center" id="p2set7">  </td>
+            <td class = "text-center" id="p2total">  </td>
           </tr>
         </tbody>
       </table>
@@ -92,10 +95,10 @@
       <h1 style="position: absolute; margin-top: 2%; margin-left: 30%"> Player 1 <small></small></h1>
     </div>
       <div class="col-md-6 text-center">
-      <button type="button" class="btn btn-danger btn-lg" id = "p1fault">Fault</button>
-      <button type="button" class="btn btn-success btn-lg" id = "p1ace">Ace</button>
-      <button type="button" class="btn btn-success btn-lg" id = "p1winner">Winner</button>
-      <button type="button" class="btn btn-primary btn-lg" id = "p1oppUFE">Opp. Unforced Error</button>
+      <button1 type="button" class="btn btn-danger btn-lg" id = "p1fault">Fault</button1>
+      <button1 type="button" class="btn btn-success btn-lg" id = "p1ace">Ace</button1>
+      <button1 type="button" class="btn btn-success btn-lg" id = "p1winner">Winner</button1>
+      <button1 type="button" class="btn btn-primary btn-lg" id = "p1oppUFE">Opp. Unforced Error</button1>
     </div>
   </p1buttons>
 
@@ -128,10 +131,10 @@
       <h1 style="position: absolute; margin-top: 2%; margin-left: 30%"> Player 2 <small></small></h1>
     </div>
     <div class="col-md-6 text-center">
-      <button type="button" class="btn btn-danger btn-lg" id = "p2fault">Fault</button>
-      <button type="button" class="btn btn-success btn-lg" id = "p2ace">Ace</button>
-      <button type="button" class="btn btn-success btn-lg" id = "p2winner">Winner</button>
-      <button type="button" class="btn btn-primary btn-lg" id = "p2oppUFE">Opp. Unforced Error</button>
+      <button2 type="button" class="btn btn-danger btn-lg" id = "p2fault">Fault</button2>
+      <button2 type="button" class="btn btn-success btn-lg" id = "p2ace">Ace</button2>
+      <button2 type="button" class="btn btn-success btn-lg" id = "p2winner">Winner</button2>
+      <button2 type="button" class="btn btn-primary btn-lg" id = "p2oppUFE">Opp. Unforced Error</button2>
     </div>
   </p2buttons>
 
