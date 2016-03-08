@@ -8,23 +8,19 @@ baseline {
   border: solid #FCFCFC 1px;
   height: 60px;
   background-color: #6b8c00;
-background-image: url("http://www.transparenttextures.com/patterns/clean-gray-paper.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-}
+  background-image: url("http://www.transparenttextures.com/patterns/clean-gray-paper.png");
+  }
 
 servebox {
   border: solid #FCFCFC 1px;
   height: 60px;
   background-color: #6b8c00;
-background-image: url("http://www.transparenttextures.com/patterns/clean-gray-paper.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  background-image: url("http://www.transparenttextures.com/patterns/clean-gray-paper.png");
 }
 
 net {
   border: solid #333333 1px;
   height: 20px;
   background-color: #000000;
-background-image: url("http://www.transparenttextures.com/patterns/tiny-grid.png");
-/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-
+  background-image: url("http://www.transparenttextures.com/patterns/tiny-grid.png");
 }
