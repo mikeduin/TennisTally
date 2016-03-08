@@ -19,6 +19,33 @@ $(document).ready(function() {
   var $p1points = $('#p1points');
   var $p2points = $('#p2points');
   var activeSet = 1;
+  var $p1adv = $('#p1adv');
+  var $p2adv = $('#p2adv');
+
+  function activeSetSelector(activeSet) {
+    if (activeSet === 1) {
+      $p1activeSet = $('#p1set1')
+      $p2activeSet = $('#p2set1')
+    } else if (activeSet === 2) {
+      $p1activeSet = $('#p1set2')
+      $p2activeSet = $('#p2set2')
+    } else if (activeSet === 3) {
+      $p1activeSet = $('#p1set3')
+      $p2activeSet = $('#p2set3')
+    } else if (activeSet === 4) {
+      $p1activeSet = $('#p1set4')
+      $p2activeSet = $('#p2set4')
+    } else if (activeSet === 5) {
+      $p1activeSet = $('#p1set5')
+      $p2activeSet = $('#p2set5')
+    } else if (activeSet === 6) {
+      $p1activeSet = $('#p1set6')
+      $p2activeSet = $('#p2set6')
+    } else {
+      $p1activeSet = $('#p1set7')
+      $p2activeSet = $('#p2set7')
+    }
+  }
 
 
 // Player 1 Button Commands
@@ -32,52 +59,35 @@ $(document).ready(function() {
       } else if (p1count === 30) {
         p1count +=10
       } else if (p1count === 40) {
+      //   if ((parseInt($p2points.text()) === 40) && ($p1adv.text() !== 'AD')) {
+      //     $p1adv.text('AD');
+      //     p1count === 40;
+      //   } else if ((parseInt($p2points.text()) === 40) && ($p2adv.text() === 'AD')) {
+      //     $p2adv.text('');
+      //     p1count === 40;
+      //   } else if ((parseInt($p2points.text()) === 40) && ($p1adv.text() === 'AD')) {
+      //     $p1adv.text('');
+      //     $p2adv.text('');
+      //
+      //   }
+      //
+      //
+      // } else {
         p1count = 0;
+        $p2points.text(0);
         if (p1games < 7) {
-          p1games +=1;
-          console.log(activeSet);
-          // console.log($p1activeSet);
-          if (activeSet === 1) {
-            $p1activeSet = $('#p1set1')
-          } else if (activeSet === 2) {
-            $p1activeSet = $('#p1set2')
-          } else if (activeSet === 3) {
-            $p1activeSet = $('#p1set3')
-          } else if (activeSet === 4) {
-            $p1activeSet = $('#p1set4')
-          } else if (activeSet === 5) {
-            $p1activeSet = $('#p1set5')
-          } else if (activeSet === 6) {
-            $p1activeSet = $('#p1set6')
-          } else {
-            $p1activeSet = $('#p1set7')
+            p1games +=1;
+            console.log(activeSet);
+            // console.log($p1activeSet);
+            activeSetSelector(activeSet);
+            $p1activeSet.text(p1games);
+            if (p1games === 7) {
+              activeSet +=1;
+              p1games = 0;
+              p2games = 0;
+            }
           }
-          $p1activeSet.text(p1games);
-        } else if (p1games === 7) {
-          activeSet +=1;
-          p1games = 1;
-          console.log(p1games);
-          console.log(activeSet);
-          if (activeSet === 1) {
-            $p1activeSet = $('#p1set1')
-          } else if (activeSet === 2) {
-            $p1activeSet = $('#p1set2')
-          } else if (activeSet === 3) {
-            $p1activeSet = $('#p1set3')
-          } else if (activeSet === 4) {
-            $p1activeSet = $('#p1set4')
-          } else if (activeSet === 5) {
-            $p1activeSet = $('#p1set5')
-          } else if (activeSet === 6) {
-            $p1activeSet = $('#p1set6')
-          } else {
-            $p1activeSet = $('#p1set7')
-          }
-          $p1activeSet.text(p1games);
         }
-      } else (
-        console.log('end')
-      )
       ;
       $p1points.text(p1count)
     } else if ($this.attr('id') === 'p1winner') {
@@ -115,52 +125,21 @@ $(document).ready(function() {
       } else if (p2count === 30) {
         p2count +=10
       } else if (p2count === 40) {
+        $p1points.text(0);
         p2count = 0;
         if (p2games < 7) {
           p2games +=1;
           console.log(activeSet);
           // console.log($p1activeSet);
-          if (activeSet === 1) {
-            $p2activeSet = $('#p2set1')
-          } else if (activeSet === 2) {
-            $p2activeSet = $('#p2set2')
-          } else if (activeSet === 3) {
-            $p2activeSet = $('#p2set3')
-          } else if (activeSet === 4) {
-            $p2activeSet = $('#p2set4')
-          } else if (activeSet === 5) {
-            $p2activeSet = $('#p2set5')
-          } else if (activeSet === 6) {
-            $p2activeSet = $('#p2set6')
-          } else {
-            $p2activeSet = $('#p2set7')
-          }
+          activeSetSelector(activeSet);
           $p2activeSet.text(p2games);
-        } else if (p2games === 7) {
-          activeSet +=1;
-          p2games = 1;
-          console.log(p2games);
-          console.log(activeSet);
-          if (activeSet === 1) {
-            $p2activeSet = $('#p2set1')
-          } else if (activeSet === 2) {
-            $p2activeSet = $('#p2set2')
-          } else if (activeSet === 3) {
-            $p2activeSet = $('#p2set3')
-          } else if (activeSet === 4) {
-            $p2activeSet = $('#p2set4')
-          } else if (activeSet === 5) {
-            $p2activeSet = $('#p2set5')
-          } else if (activeSet === 6) {
-            $p2activeSet = $('#p2set6')
-          } else {
-            $p2activeSet = $('#p2set7')
+          if (p2games === 7) {
+            activeSet +=1;
+            p1games = 0;
+            p2games = 0;
           }
-          $p2activeSet.text(p2games);
         }
-      } else (
-        console.log('end')
-      )
+      }
       ;
       $p2points.text(p2count)
     }
