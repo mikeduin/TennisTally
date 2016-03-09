@@ -27,6 +27,13 @@ $(document).ready(function() {
   var $p2adv = $('#p2adv');
   var $p1scoreboard = $('#p1scoreboard');
   var $p2scoreboard = $('#p2scoreboard');
+  var $p1currGame = $('#p1currGame');
+  var $p2currGame = $('#p2currGame');
+  var $p1gameAction = $('#p1gameAction');
+  var $p2gameAction = $('#p2gameAction');
+  var $p1summaryHead = $('#p1summaryHead');
+  var $p2summaryHead = $('#p2summaryHead');
+
   // var $p1gamesTotal = $('#p1gamesTotal');
   // var $p2gamesTotal = $('#p2gamesTotal');
   // var $p1ptsTotal = $('#p1ptsTotal');
@@ -70,7 +77,18 @@ $(document).ready(function() {
 
   playerOneRef.on('value', function(data) {
     var p1name = data.val().name;
-    $p1scoreboard.text(p1name)
+    $p1scoreboard.text(p1name);
+    $p1currGame.text(p1name);
+    $p1gameAction.text(p1name);
+    $p1summaryHead.text(p1name);
+  })
+
+  playerTwoRef.on('value', function(data) {
+    var p2name = data.val().name;
+    $p2scoreboard.text(p2name);
+    $p2currGame.text(p2name);
+    $p2gameAction.text(p2name); 
+    $p2summaryHead.text(p2name);
   })
 
 
