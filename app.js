@@ -6,16 +6,20 @@ $(document).ready(function() {
   var p2games = 0;
   // var p1sets = 0;
   // var p2sets = 0;
-  // var p1totalFaults = 0;
-  // var p2totalFaults = 0;
-  // var p1pointFaults = 0;
-  // var p2pointFaults = 0;
-  // var p1aces = 0;
-  // var p2aces = 0;
-  // var p1winners = 0;
-  // var p2winners = 0;
-  // var p1UFE = 0;
-  // var p2UFE = 0;
+  var p1totalFaults = 0;
+  var p2totalFaults = 0;
+  var p1pointFaults = 0;
+  var p2pointFaults = 0;
+  var p1dblFaults = 0;
+  var p2dblFaults = 0;
+  var p1pointsWon = 0;
+  var p2pointsWon = 0;
+  var p1aces = 0;
+  var p2aces = 0;
+  var p1winners = 0;
+  var p2winners = 0;
+  var p1UFE = 0;
+  var p2UFE = 0;
   var $p1points = $('#p1points');
   var $p2points = $('#p2points');
   var activeSet = 1;
@@ -95,9 +99,12 @@ $(document).ready(function() {
       }
     }
     $p1points.text(p1count);
+    p1pointFaults = 0;
+    p2pointFaults = 0;
   }
 
-  function p2gameProgressor() {var p2pointScore = $p2points.text();
+  function p2gameProgressor() {
+    var p2pointScore = $p2points.text();
     var p2count = parseInt(p2pointScore);
     if (p2count === 0 || p2count === 15) {
       p2count +=15
@@ -143,7 +150,9 @@ $(document).ready(function() {
           }
         }
       };
-    $p2points.text(p2count)
+    $p2points.text(p2count);
+    p1pointFaults = 0;
+    p2pointFaults = 0;
     }
 
 
@@ -152,12 +161,26 @@ $(document).ready(function() {
     var $this = $(this);
     if ($this.attr('id') === 'p1ace') {
       p1gameProgressor();
+      p1aces += 1;
+      p1pointsWon += 1;
     } else if ($this.attr('id') === 'p1winner') {
       p1gameProgressor();
+      p1winners += 1;
+      p1pointsWon += 1;
     } else if ($this.attr('id') === 'p1oppUFE') {
       p1gameProgressor();
+      p2UFE += 1;
+      p2pointsWon += 1;
     } else if ($this.attr('id') === 'p1fault') {
-      console.log('clicking p1fault');
+      p1pointFaults += 1;
+      p1totalFaults += 1;
+      if (p1pointFaults === 2) {
+        p2gameProgressor();
+        p2pointsWon += 1;
+        p1dblFaults += 1;
+      }
+    } else {
+      console.log('error')
     }
   })
 // End of Player 1 Button Commands
@@ -167,12 +190,26 @@ $(document).ready(function() {
     var $this = $(this);
     if ($this.attr('id') === 'p2ace') {
       p2gameProgressor();
+      p2aces += 1;
+      p2pointsWon == 1;
     } else if ($this.attr('id') === 'p2winner') {
       p2gameProgressor();
+      p2winners += 1;
+      p2pointsWon += 1;
     } else if ($this.attr('id') === 'p2oppUFE') {
       p2gameProgressor();
+      p1UFE += 1;
+      p1UFE += 1;
     } else if ($this.attr('id') === 'p2fault') {
-      console.log('clicking p1fault');
+      p2pointFaults += 1;
+      p2totalFaults += 1;
+      if (p2pointFaults === 2) {
+        p1gameProgressor();
+        p1pointsWon += 1;
+        p2dblFaults += 1;
+      }
+    } else {
+      console.log('error')
     }
   })
 // End of Player 2 Button Commands
