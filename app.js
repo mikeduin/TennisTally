@@ -59,26 +59,37 @@ $(document).ready(function() {
       } else if (p1count === 30) {
         p1count +=10
       } else if (p1count === 40) {
-      //   if ((parseInt($p2points.text()) === 40) && ($p1adv.text() !== 'AD')) {
-      //     $p1adv.text('AD');
-      //     p1count === 40;
-      //   } else if ((parseInt($p2points.text()) === 40) && ($p2adv.text() === 'AD')) {
-      //     $p2adv.text('');
-      //     p1count === 40;
-      //   } else if ((parseInt($p2points.text()) === 40) && ($p1adv.text() === 'AD')) {
-      //     $p1adv.text('');
-      //     $p2adv.text('');
-      //
-      //   }
-      //
-      //
-      // } else {
+        if ((parseInt($p2points.text()) === 40) && ($p2adv.text() === 'AD')) {
+          $p2adv.text('');
+          p1count === 40;
+        } else if ((parseInt($p2points.text()) === 40) && ($p1adv.text() !== 'AD')) {
+        $p1adv.text('AD');
+        p1count === 40;
+        } else if ((parseInt($p2points.text()) === 40) && ($p1adv.text() === 'AD')) {
+          $p1adv.text('');
+          $p2adv.text('');
+          p1count = 0;
+          $p2points.text(0);
+          if (p1games < 7) {
+              p1games +=1;
+              console.log(activeSet);
+              // console.log($p1activeSet);
+              activeSetSelector(activeSet);
+              $p1activeSet.text(p1games);
+              if (p1games === 7) {
+                activeSet +=1;
+                p1games = 0;
+                p2games = 0;
+              }
+            }
+        }
+
+        else {
         p1count = 0;
         $p2points.text(0);
         if (p1games < 7) {
             p1games +=1;
             console.log(activeSet);
-            // console.log($p1activeSet);
             activeSetSelector(activeSet);
             $p1activeSet.text(p1games);
             if (p1games === 7) {
@@ -88,8 +99,8 @@ $(document).ready(function() {
             }
           }
         }
-      ;
-      $p1points.text(p1count)
+      }
+      $p1points.text(p1count);
     } else if ($this.attr('id') === 'p1winner') {
       var p1pointScore = $p1points.text();
       var p1count = parseInt(p1pointScore);
@@ -125,18 +136,44 @@ $(document).ready(function() {
       } else if (p2count === 30) {
         p2count +=10
       } else if (p2count === 40) {
-        $p1points.text(0);
+        if ((parseInt($p1points.text()) === 40) && ($p1adv.text() === 'AD')) {
+          $p1adv.text('');
+          p2count === 40;
+        } else if ((parseInt($p1points.text()) === 40) && ($p2adv.text() !== 'AD')) {
+        $p2adv.text('AD');
+        p2count === 40;
+        } else if ((parseInt($p1points.text()) === 40) && ($p2adv.text() === 'AD')) {
+          $p2adv.text('');
+          $p1adv.text('');
+          p2count = 0;
+          $p1points.text(0);
+          if (p2games < 7) {
+              p2games +=1;
+              console.log(activeSet);
+              // console.log($p1activeSet);
+              activeSetSelector(activeSet);
+              $p2activeSet.text(p2games);
+              if (p2games === 7) {
+                activeSet +=1;
+                p2games = 0;
+                p1games = 0;
+              }
+            }
+        }
+
+        else {
         p2count = 0;
+        $p1points.text(0);
         if (p2games < 7) {
-          p2games +=1;
-          console.log(activeSet);
-          // console.log($p1activeSet);
-          activeSetSelector(activeSet);
-          $p2activeSet.text(p2games);
-          if (p2games === 7) {
-            activeSet +=1;
-            p1games = 0;
-            p2games = 0;
+            p2games +=1;
+            console.log(activeSet);
+            activeSetSelector(activeSet);
+            $p2activeSet.text(p2games);
+            if (p2games === 7) {
+              activeSet +=1;
+              p2games = 0;
+              p1games = 0;
+            }
           }
         }
       }
