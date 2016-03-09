@@ -13,72 +13,53 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="custom.css">
 
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- My JS -->
+    <script src="app.js"></script>
+
   </head>
   <body class = "container-fixed">
     <br>
     <div class="row">
-      <!-- <div class="col-md-offset-1 col-md-1">
-          <img  src="images/tennisRacket.jpg" alt="tennisRacket" style="height: 150px; width: 150px"/>
-      </div> -->
-      <div class="col-md-12">
-        <h1 class="text-center jumbotron">  Welcome to TennisTracker <small></small></h1>
+      <div class="col-md-12 jumbotron">
+        <h1 class="text-center"> <img src="images/tennisball.png" alt="tennisball" style="width: 100px; height: 100px"/> Welcome to TennisTally <img src="images/tennisball.png" alt="tennisball" style="width: 100px; height: 100px"/><small></small></h1>
       </div>
-      <!-- <div class="col-md-1">
-          <img src="images/tennisRacket.jpg" alt="tennisRacket" style="height: 150px; width: 150px;"/>
-      </div> -->
-
     </div>
     <br>
+    <br>
     <div class="row col-md-12 text-center">
-      <form class="form-inline" action="" method="post" id = "playerOneForm">
+      <form class="form-inline" action="index.html" method="get" id = "playerForm">
         <div class="form-group">
           <label for="playerOneName"> <strong> Player One </strong> </label>
-          <input type="text" class="form-control" id="playerOneName" placeholder="name">
+          <input type="text" class="form-control" name = "playerOneName" id="playerOneName" placeholder="name" required>
         </div>
         <div class="form-group">
-          <label for="playerOneEmail">Email</label>
-          <input type="email" class="form-control" id="playerOneEmail" placeholder="andre@agassi.com">
+          <label for="playerOneEmail" style="margin-left: 15px">Email</label>
+          <input type="email" class="form-control" name = "playerOneEmail" id="playerOneEmail" placeholder="andre@agassi.com" required>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="row col-md-12 text-center">
-      <form class="form-inline" action="" method="post" id = "playerTwoForm">
+        <br>
+        <br>
         <div class="form-group">
           <label for="playerTwoName"> <strong> Player Two </strong> </label>
-          <input type="text" class="form-control" id="playerTwoName" placeholder="name">
+          <input type="text" class="form-control" name = "playerTwoName" id="playerTwoName" placeholder="name" required>
         </div>
         <div class="form-group">
-          <label for="playerTwoEmail">Email</label>
-          <input type="email" class="form-control" id="playerTwoEmail" placeholder="pete@sampras.com">
+          <label for="playerTwoEmail" style="margin-left: 15px">Email</label>
+          <input type="email" class="form-control" name = "playerTwoName" id="playerTwoEmail" placeholder="pete@sampras.com" required>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-default" id = "submitButton"> Begin Match </button>
       </form>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="row col-md-12 text-center">
-      <h4> Click who will serve first to begin match. <small></small></h4>
-    </div>
-    <br>
-    <div class="row col-md-12 text-center">
-      <button type="button" class="btn btn-default btn-lg" id = "playerOneButton">Player One</button>
-      <button type="button" class="btn btn-default btn-lg" id = "playerTwoButton">Player Two</button>
-    </div>
 
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!-- My JS -->
-    <script src="app.js"></script>
+
   </body>
 </html>

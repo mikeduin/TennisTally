@@ -13,12 +13,18 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="custom.css">
 
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+
   </head>
   <body class = "container-fixed">
 
+  <script>
+
+  </script>
+
   <div class="row">
     <div class="col-md-2 text-center">
-      <h4>  Current Game <small></small></h4>
+      <h4> <em> Current Game </em> <small></small></h4>
       <table class = "table table-condensed table-bordered">
         <thead>
               <th class="text-center"> Player </th>
@@ -39,7 +45,7 @@
     </div>
 
     <scoreboard class="col-md-6 col-md-offset-1">
-      <h4 class = "text-center"> SCOREBOARD <small></small></h4>
+      <h4 class = "text-center"> <strong> SCOREBOARD </strong> <small></small></h4>
       <table class = "table table-bordered table-condensed">
         <thead>
           <tr>
@@ -56,7 +62,7 @@
         </thead>
         <tbody>
           <tr>
-            <td> Player 1 </td>
+            <td id = "p1scoreboard"> Player 1 </td>
             <td class = "text-center" id="p1set1">  </td>
             <td class = "text-center" id="p1set2">  </td>
             <td class = "text-center" id="p1set3">  </td>
@@ -67,7 +73,7 @@
             <td class = "text-center" id="p1total">  </td>
           </tr>
           <tr>
-            <td> Player 2 </td>
+            <td id = "p2scoreboard"> Player 2 </td>
             <td class = "text-center" id="p2set1">  </td>
             <td class = "text-center" id="p2set2">  </td>
             <td class = "text-center" id="p2set3">  </td>
@@ -122,7 +128,7 @@
         </baseline>
       </tenniscourt>
       <alertbox class="col-md-2 text-left" style="position: absolute; margin-top: 50px; margin-left: -150px">
-        <h3> Stat alerts go here </h3>
+        <h3 class = "text-center"> <strong> LAST PLAY </strong> <br> <small id = "lastplay"> <em> waiting for match to begin </em> </small> </h3>
       </alertbox>
   </div>
 

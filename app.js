@@ -25,6 +25,54 @@ $(document).ready(function() {
   var activeSet = 1;
   var $p1adv = $('#p1adv');
   var $p2adv = $('#p2adv');
+  var $p1scoreboard = $('#p1scoreboard');
+  var $p2scoreboard = $('#p2scoreboard');
+  // var $p1gamesTotal = $('#p1gamesTotal');
+  // var $p2gamesTotal = $('#p2gamesTotal');
+  // var $p1ptsTotal = $('#p1ptsTotal');
+  // var $p2ptsTotal = $('#p2ptsTotal');
+  // var $p1acesTotal = $('#p1acesTotal');
+  // var $p2acesTotal = $('#p2acesTotal');
+
+
+  // $('#playerOneButton').on('click', function(event) {
+  //   var playerOneName = $('#playerOneName').val();
+  //   $('#playerOneServeButton').text(playerOneName);
+  //   console.log(playerOneName);
+  // });
+  //
+  // $('#playerTwoButton').click(function() {
+  //   var playerTwoName = $('#playerTwoName').val();
+  //   $('#playerTwoServeButton').text(playerTwoName);
+  // });
+
+  // Firebase Code
+  var myDataRef = new Firebase ('https://tennistally.firebaseio.com/');
+
+  var playerOneRef = new Firebase ('https://tennistally.firebaseio.com/playerone');
+
+  var playerTwoRef = new Firebase ('https://tennistally.firebaseio.com/playertwo');
+
+  $('#playerForm').on('submit', function(event) {
+    var playerOneName = $('#playerOneName').val();
+    var playerTwoName = $('#playerTwoName').val();
+    var playerOneEmail = $('#playerOneEmail').val();
+    var playerTwoEmail = $('#playerTwoEmail').val();
+    playerOneRef.set({
+      name: playerOneName,
+      email: playerOneEmail,
+    });
+    playerTwoRef.set({
+      name: playerTwoName,
+      email: playerTwoEmail,
+    });
+  })
+
+  playerOneRef.on('value', function(data) {
+    var p1name = data.val().name;
+    $p1scoreboard.text(p1name)
+  })
+
 
   function activeSetSelector(activeSet) {
     if (activeSet === 1) {
@@ -72,8 +120,6 @@ $(document).ready(function() {
         $p2points.text(0);
         if (p1games < 7) {
             p1games +=1;
-            console.log(activeSet);
-            // console.log($p1activeSet);
             activeSetSelector(activeSet);
             $p1activeSet.text(p1games);
             if (p1games === 7) {
@@ -87,7 +133,6 @@ $(document).ready(function() {
         $p2points.text(0);
         if (p1games < 7) {
             p1games +=1;
-            console.log(activeSet);
             activeSetSelector(activeSet);
             $p1activeSet.text(p1games);
             if (p1games === 7) {
@@ -124,8 +169,6 @@ $(document).ready(function() {
         $p1points.text(0);
         if (p2games < 7) {
             p2games +=1;
-            console.log(activeSet);
-            // console.log($p1activeSet);
             activeSetSelector(activeSet);
             $p2activeSet.text(p2games);
             if (p2games === 7) {
@@ -139,7 +182,6 @@ $(document).ready(function() {
         $p1points.text(0);
         if (p2games < 7) {
             p2games +=1;
-            console.log(activeSet);
             activeSetSelector(activeSet);
             $p2activeSet.text(p2games);
             if (p2games === 7) {
@@ -163,6 +205,7 @@ $(document).ready(function() {
       p1gameProgressor();
       p1aces += 1;
       p1pointsWon += 1;
+      $p1acesTotal.text(p1aces);
     } else if ($this.attr('id') === 'p1winner') {
       p1gameProgressor();
       p1winners += 1;
