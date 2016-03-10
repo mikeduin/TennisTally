@@ -42,6 +42,8 @@ $(document).ready(function() {
   var $p2ptsTotal = $('#p2ptsTotal');
   var $p1acesTotal = $('#p1acesTotal');
   var $p2acesTotal = $('#p2acesTotal');
+  var $p1faultsTotal = $('#p1faultsTotal');
+  var $p2faultsTotal = $('#p2faultsTotal');
   var $p1dblFaultsTotal = $('#p1dblFaultsTotal');
   var $p2dblFaultsTotal = $('#p2dblFaultsTotal');
   var $p1winnersTotal = $('#p1winnersTotal');
@@ -81,6 +83,7 @@ $(document).ready(function() {
     var p1pointsWon = data.val().pointsWon;
     var p1aces = data.val().aces;
     var p1UFE = data.val().unforcedErrors;
+    var p1faults = data.val().faults;
     var p1dblFaults = data.val().doubleFaults;
     var p1winners = data.val().winners;
     $p1scoreboard.text(p1name);
@@ -91,6 +94,7 @@ $(document).ready(function() {
     $p1ptsTotal.text(p1pointsWon);
     $p1acesTotal.text(p1aces);
     $p1ufeTotal.text(p1UFE);
+    $p1faultsTotal.text(p1faults);
     $p1dblFaultsTotal.text(p1dblFaults);
     $p1winnersTotal.text(p1winners);
   })
@@ -101,6 +105,7 @@ $(document).ready(function() {
     var p2pointsWon = data.val().pointsWon;
     var p2aces = data.val().aces;
     var p2UFE = data.val().unforcedErrors;
+    var p2faults = data.val().faults;
     var p2dblFaults = data.val().doubleFaults;
     var p2winners = data.val().winners;
     $p2scoreboard.text(p2name);
@@ -111,6 +116,7 @@ $(document).ready(function() {
     $p2ptsTotal.text(p2pointsWon);
     $p2acesTotal.text(p2aces);
     $p2ufeTotal.text(p2UFE);
+    $p2faultsTotal.text(p2faults);
     $p2dblFaultsTotal.text(p2dblFaults);
     $p2winnersTotal.text(p2winners);
   })
