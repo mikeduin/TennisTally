@@ -57,21 +57,21 @@
         <tbody>
           <tr>
             <td id = "p1scoreboard"> Player 1 </td>
-            <td class = "text-center" id="p1set1">  </td>
+            <td class = "text-center" id="p1set1"> 0 </td>
             <td class = "text-center" id="p1set2">  </td>
             <td class = "text-center" id="p1set3">  </td>
             <td class = "text-center" id="p1set4">  </td>
             <td class = "text-center" id="p1set5">  </td>
-            <td class = "text-center" id="p1total">  </td>
+            <td class = "text-center" id="p1setsWon" style="font-size: 16px; font-weight: bold">  </td>
           </tr>
           <tr>
             <td id = "p2scoreboard"> Player 2 </td>
-            <td class = "text-center" id="p2set1">  </td>
+            <td class = "text-center" id="p2set1"> 0 </td>
             <td class = "text-center" id="p2set2">  </td>
             <td class = "text-center" id="p2set3">  </td>
             <td class = "text-center" id="p2set4">  </td>
             <td class = "text-center" id="p2set5">  </td>
-            <td class = "text-center" id="p2total">  </td>
+            <td class = "text-center" id="p2setsWon" style="font-size: 16px; font-weight: bold">  </td>
           </tr>
         </tbody>
       </table>
@@ -81,7 +81,7 @@
       <br>
       <br>
       <br>
-      <button type="button" class="btn btn-warning btn-lg">END MATCH</button>
+      <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal" id="endmatch">END MATCH</button>
     </div>
   </div>
   <hr style="margin-top: 0px">
@@ -133,6 +133,21 @@
       <button2 type="button" class="btn btn-primary btn-lg" id = "p2oppUFE">Opp. Unforced Error</button2>
     </div>
   </p2buttons>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"> Are You Sure You Want to End the Match? </h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">No, Take me Back to Live Scoring</button>
+          <button type="button" class="btn btn-primary" id="toMatchSummary" > <a href="matchsummary.html" style="color: white"> Yes. On to the Match Summary! </a> </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

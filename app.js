@@ -48,6 +48,8 @@ $(document).ready(function() {
   var $p2winnersTotal = $('#p2winnersTotal');
   var $p1ufeTotal = $('#p1ufeTotal');
   var $p2ufeTotal = $('#p2ufeTotal');
+  var $p1setsWon = $('#p1setsWon');
+  var $p2setsWon = $('#p2setsWon');
 
 // Firebase Code
   var myDataRef = new Firebase ('https://tennistally.firebaseio.com/');
@@ -56,7 +58,7 @@ $(document).ready(function() {
 
   var playerTwoRef = new Firebase ('https://tennistally.firebaseio.com/playertwo');
 
-  // Begin Firebase Name Linking
+  // Begin Firebase Name + Stat Linking
   $('#playerForm').on('submit', function(event) {
     var playerOneName = $('#playerOneName').val();
     var playerTwoName = $('#playerTwoName').val();
@@ -119,26 +121,38 @@ $(document).ready(function() {
 // Active Set Selector Function
   function activeSetSelector(activeSet) {
     if (activeSet === 1) {
-      $p1activeSet = $('#p1set1')
-      $p2activeSet = $('#p2set1')
+      $p1activeSet = $('#p1set1');
+      $p2activeSet = $('#p2set1');
     } else if (activeSet === 2) {
-      $p1activeSet = $('#p1set2')
-      $p2activeSet = $('#p2set2')
+      $p1activeSet = $('#p1set2');
+      $p2activeSet = $('#p2set2');
+      if (p1games === 0 && p2games === 0) {
+        $p1activeSet.text(0);
+        $p2activeSet.text(0);
+      }
     } else if (activeSet === 3) {
-      $p1activeSet = $('#p1set3')
-      $p2activeSet = $('#p2set3')
+      $p1activeSet = $('#p1set3');
+      $p2activeSet = $('#p2set3');
+      if (p1games === 0 && p2games === 0) {
+        $p1activeSet.text(0);
+        $p2activeSet.text(0);
+      }
     } else if (activeSet === 4) {
-      $p1activeSet = $('#p1set4')
-      $p2activeSet = $('#p2set4')
+      $p1activeSet = $('#p1set4');
+      $p2activeSet = $('#p2set4');
+      if (p1games === 0 && p2games === 0) {
+        $p1activeSet.text(0);
+        $p2activeSet.text(0);
+      }
     } else if (activeSet === 5) {
-      $p1activeSet = $('#p1set5')
-      $p2activeSet = $('#p2set5')
-    } else if (activeSet === 6) {
-      $p1activeSet = $('#p1set6')
-      $p2activeSet = $('#p2set6')
+      $p1activeSet = $('#p1set5');
+      $p2activeSet = $('#p2set5');
+      if (p1games === 0 && p2games === 0) {
+        $p1activeSet.text(0);
+        $p2activeSet.text(0);
+      }
     } else {
-      $p1activeSet = $('#p1set7')
-      $p2activeSet = $('#p2set7')
+      alert("The game has ended!")
     }
   };
 // End Active Set Selector Function
@@ -166,16 +180,16 @@ $(document).ready(function() {
         if (p1games < 7) {
             p1games +=1;
             p1gamesWon += 1;
-            console.log(p1gamesWon);
             activeSetSelector(activeSet);
             $p1activeSet.text(p1games);
             if (p1games === 7) {
               p1gamesWon += 1;
               activeSet += 1;
-              p1setsWon +=1;
+              p1setsWon += 1;
+              $p1setsWon.text(p1setsWon);
               p1games = 0;
-              console.log(p1gamesWon);
               p2games = 0;
+              activeSetSelector(activeSet);
             }
           }
       } else {
@@ -190,8 +204,10 @@ $(document).ready(function() {
               p1gamesWon += 1;
               activeSet += 1;
               p1setsWon += 1;
+              $p1setsWon.text(p1setsWon);
               p1games = 0;
               p2games = 0;
+              activeSetSelector(activeSet);
           }
         }
       }
@@ -229,8 +245,10 @@ $(document).ready(function() {
               p2gamesWon += 1;
               activeSet +=1;
               p2setsWon += 1;
+              $p2setsWon.text(p2setsWon);
               p2games = 0;
               p1games = 0;
+              activeSetSelector(activeSet);
             }
           }
       } else {
@@ -245,8 +263,10 @@ $(document).ready(function() {
               p2gamesWon += 1;
               activeSet += 1;
               p2setsWon += 1;
+              $p2setsWon.text(p2setsWon);
               p2games = 0;
               p1games = 0;
+              activeSetSelector(activeSet);
             }
           }
         }
@@ -385,5 +405,9 @@ $(document).ready(function() {
     }
   })
 // End of Player 2 Button Commands
+  //
+  // $('#toMatchSummary').on('click', function(event){
+  //   window.location.href('url(matchsummary.html)')
+  // })
 
 })
