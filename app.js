@@ -52,6 +52,7 @@ $(document).ready(function() {
   var $p2ufeTotal = $('#p2ufeTotal');
   var $p1setsWon = $('#p1setsWon');
   var $p2setsWon = $('#p2setsWon');
+  var $playbyplay = $('#playbyplay');
 
 // Firebase Code
   var myDataRef = new Firebase ('https://tennistally.firebaseio.com/');
@@ -59,6 +60,8 @@ $(document).ready(function() {
   var playerOneRef = new Firebase ('https://tennistally.firebaseio.com/playerone');
 
   var playerTwoRef = new Firebase ('https://tennistally.firebaseio.com/playertwo');
+
+  var playByPlayRef = new Firebase ('https://tennistally.firebaseio.com/playbyplay');
 
   // Begin Firebase Name + Stat Linking
   $('#playerForm').on('submit', function(event) {
@@ -119,6 +122,18 @@ $(document).ready(function() {
     $p2faultsTotal.text(p2faults);
     $p2dblFaultsTotal.text(p2dblFaults);
     $p2winnersTotal.text(p2winners);
+  })
+
+  playByPlayRef.on('value', function(data) {
+    var play = data.val().play;
+    var p1currSets = data.val().p1sets;
+    var p1currGames = data.val().p1games;
+    var p1currPoints = data.val().p1points;
+    var p2currSets = data.val().p2sets;
+    var p2currGames = data.val().p2games;
+    var p2currPoints = data.val().p2points;
+    console.log(p1currSets);
+    $('#playbyplay').append('<tr> <td>' + play + '</td> <td>' + p1currSets + '</td> <td>' + p1currGames + '</td> <td>' + p1currPoints + '</td> <td>' + p2currSets + '</td> <td>' + p2currGames + '</td> <td>' + p2currPoints + '</td> </tr>');
   })
   // End Firebase Name Linking
 
@@ -299,7 +314,15 @@ $(document).ready(function() {
         gamesWon: p1gamesWon
       });
       $lastplay.text(p1Name + ' serves an Ace!');
-
+      playByPlayRef.set({
+        play: p1Name + ' serves an Ace!',
+        p1sets: $p1setsWon.text(),
+        p2sets: $p2setsWon.text(),
+        p1points: $p1points.text(),
+        p2points: $p2points.text(),
+        p1games: p1games,
+        p2games: p2games
+      })
 
     } else if ($this.attr('id') === 'p1winner') {
       p1gameProgressor();
@@ -311,6 +334,15 @@ $(document).ready(function() {
         gamesWon: p1gamesWon
       });
       $lastplay.text(p1Name + ' takes the point with a winner.');
+      playByPlayRef.set({
+        play: p1Name + ' takes the point with a winner.',
+        p1sets: $p1setsWon.text(),
+        p2sets: $p2setsWon.text(),
+        p1points: $p1points.text(),
+        p2points: $p2points.text(),
+        p1games: p1games,
+        p2games: p2games
+      })
     } else if ($this.attr('id') === 'p1oppUFE') {
       p1gameProgressor();
       p2UFE += 1;
@@ -323,6 +355,15 @@ $(document).ready(function() {
         unforcedErrors: p2UFE
       });
       $lastplay.text(p2Name + ' commits an unforced error. ' + p1Name + ' takes the point.' );
+      playByPlayRef.set({
+        play: p2Name + ' commits an unforced error. ' + p1Name + ' takes the point.',
+        p1sets: $p1setsWon.text(),
+        p2sets: $p2setsWon.text(),
+        p1points: $p1points.text(),
+        p2points: $p2points.text(),
+        p1games: p1games,
+        p2games: p2games
+      })
     } else if ($this.attr('id') === 'p1fault') {
       p1pointFaults += 1;
       p1totalFaults += 1;
@@ -330,6 +371,15 @@ $(document).ready(function() {
         faults: p1totalFaults
       });
       $lastplay.text(p1Name + " faults. It's his first fault of this point and he will serve again.");
+      playByPlayRef.set({
+        play: p1Name + " faults. It's his first fault of this point and he will serve again.",
+        p1sets: $p1setsWon.text(),
+        p2sets: $p2setsWon.text(),
+        p1points: $p1points.text(),
+        p2points: $p2points.text(),
+        p1games: p1games,
+        p2games: p2games
+      })
       if (p1pointFaults === 2) {
         p2gameProgressor();
         p2pointsWon += 1;
@@ -342,6 +392,15 @@ $(document).ready(function() {
           gamesWon: p2gamesWon
         });
         $lastplay.text(p1Name + " double-faults! " + p2Name + " takes the point.");
+        playByPlayRef.set({
+          play: p1Name + " double-faults! " + p2Name + " takes the point.",
+          p1sets: $p1setsWon.text(),
+          p2sets: $p2setsWon.text(),
+          p1points: $p1points.text(),
+          p2points: $p2points.text(),
+          p1games: p1games,
+          p2games: p2games
+        })
       }
     } else {
       console.log('error')
@@ -364,6 +423,15 @@ $(document).ready(function() {
         gamesWon: p2gamesWon
       });
       $lastplay.text(p2Name + ' serves an Ace!');
+      playByPlayRef.set({
+        play: p2Name + ' serves an Ace!',
+        p1sets: $p1setsWon.text(),
+        p2sets: $p2setsWon.text(),
+        p1points: $p1points.text(),
+        p2points: $p2points.text(),
+        p1games: p1games,
+        p2games: p2games
+      })
     } else if ($this.attr('id') === 'p2winner') {
       p2gameProgressor();
       p2winners += 1;
@@ -374,6 +442,15 @@ $(document).ready(function() {
         gamesWon: p2gamesWon
       });
       $lastplay.text(p2Name + ' takes the point with a winner.');
+      playByPlayRef.set({
+        play: p2Name + ' takes the point with a winner.',
+        p1sets: $p1setsWon.text(),
+        p2sets: $p2setsWon.text(),
+        p1points: $p1points.text(),
+        p2points: $p2points.text(),
+        p1games: p1games,
+        p2games: p2games
+      })
     } else if ($this.attr('id') === 'p2oppUFE') {
       p2gameProgressor();
       p1UFE += 1;
@@ -386,6 +463,15 @@ $(document).ready(function() {
         gamesWon: p2gamesWon
       });
       $lastplay.text(p1Name + ' commits an unforced error. ' + p2Name + ' takes the point.' );
+      playByPlayRef.set({
+        play: p1Name + ' commits an unforced error. ' + p2Name + ' takes the point.',
+        p1sets: $p1setsWon.text(),
+        p2sets: $p2setsWon.text(),
+        p1points: $p1points.text(),
+        p2points: $p2points.text(),
+        p1games: p1games,
+        p2games: p2games
+      })
     } else if ($this.attr('id') === 'p2fault') {
       p2pointFaults += 1;
       p2totalFaults += 1;
@@ -393,6 +479,15 @@ $(document).ready(function() {
         faults: p2totalFaults
       });
       $lastplay.text(p2Name + " faults. It's his first fault of this point and he will serve again.");
+      playByPlayRef.set({
+        play: p2Name + " faults. It's his first fault of this point and he will serve again.",
+        p1sets: $p1setsWon.text(),
+        p2sets: $p2setsWon.text(),
+        p1points: $p1points.text(),
+        p2points: $p2points.text(),
+        p1games: p1games,
+        p2games: p2games
+      })
       if (p2pointFaults === 2) {
         p1gameProgressor();
         p1pointsWon += 1;
@@ -405,6 +500,15 @@ $(document).ready(function() {
           gamesWon: p1gamesWon
         });
         $lastplay.text(p2Name + " double-faults! " + p1Name + " takes the point.");
+        playByPlayRef.set({
+          play: p2Name + " double-faults! " + p1Name + " takes the point.",
+          p1sets: $p1setsWon.text(),
+          p2sets: $p2setsWon.text(),
+          p1points: $p1points.text(),
+          p2points: $p2points.text(),
+          p1games: p1games,
+          p2games: p2games
+        })
       }
     } else {
       console.log('error')
