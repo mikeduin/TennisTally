@@ -24,3 +24,10 @@ net {
   background-color: #000000;
   background-image: url("http://www.transparenttextures.com/patterns/tiny-grid.png");
 }
+
+alertbar {
+  height: 40px;
+  background-color: #FAFAFA;
+  border-top: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+}

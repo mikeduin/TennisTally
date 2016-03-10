@@ -53,6 +53,7 @@ $(document).ready(function() {
   var $p1setsWon = $('#p1setsWon');
   var $p2setsWon = $('#p2setsWon');
   var $playbyplay = $('#playbyplay');
+  var $alertbar = $('#alertbar');
 
 // Firebase Code
   var myDataRef = new Firebase ('https://tennistally.firebaseio.com/');
@@ -100,6 +101,17 @@ $(document).ready(function() {
     $p1faultsTotal.text(p1faults);
     $p1dblFaultsTotal.text(p1dblFaults);
     $p1winnersTotal.text(p1winners);
+    if (p1aces === 5) {
+      var newElements = [
+        "<img class='fiveaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+        "<p class='fiveaces' style='display:inline'> STAT ALERT: That is " + p1name + "'s fifth Ace of the game!! </p>",
+        "<img class='fiveaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+      ];
+      $alertbar.append(newElements);
+      setTimeout(function() {
+        $('.fiveaces').remove()
+      }, 5000);
+    };
   })
 
   playerTwoRef.on('value', function(data) {
@@ -122,6 +134,13 @@ $(document).ready(function() {
     $p2faultsTotal.text(p2faults);
     $p2dblFaultsTotal.text(p2dblFaults);
     $p2winnersTotal.text(p2winners);
+    if (p2aces === 5) {
+      $alertbar.append([
+        "<img src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+        "<p style='display:inline'> STAT ALERT: That is " + p2name + "'s fifth Ace of the game!! </p>",
+        "<img src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+      ])
+    };
   })
 
   playByPlayRef.on('value', function(data) {
@@ -132,7 +151,6 @@ $(document).ready(function() {
     var p2currSets = data.val().p2sets;
     var p2currGames = data.val().p2games;
     var p2currPoints = data.val().p2points;
-    console.log(p1currSets);
     $('#playbyplay').append('<tr> <td>' + play + '</td> <td>' + p1currSets + '</td> <td>' + p1currGames + '</td> <td>' + p1currPoints + '</td> <td>' + p2currSets + '</td> <td>' + p2currGames + '</td> <td>' + p2currPoints + '</td> </tr>');
   })
   // End Firebase Name Linking
@@ -431,7 +449,7 @@ $(document).ready(function() {
         p2points: $p2points.text(),
         p1games: p1games,
         p2games: p2games
-      })
+      });
     } else if ($this.attr('id') === 'p2winner') {
       p2gameProgressor();
       p2winners += 1;
