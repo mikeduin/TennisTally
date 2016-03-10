@@ -33,6 +33,7 @@ $(document).ready(function() {
   var $p2gameAction = $('#p2gameAction');
   var $p1summaryHead = $('#p1summaryHead');
   var $p2summaryHead = $('#p2summaryHead');
+  var $lastplay = $('#lastplay');
 
   // var $p1gamesTotal = $('#p1gamesTotal');
   // var $p2gamesTotal = $('#p2gamesTotal');
@@ -211,22 +212,28 @@ $(document).ready(function() {
 // End Scoring Progression Functions
 
 // Player 1 Button Commands
+
   $('button1').on('click', function(event) {
     var $this = $(this);
+    var p1Name = $p1scoreboard.text();
+    var p2Name = $p2scoreboard.text();
     if ($this.attr('id') === 'p1ace') {
       p1gameProgressor();
       p1aces += 1;
       p1pointsWon += 1;
       playerOneRef.update({
         aces: p1aces,
-        pointsWon: p1pointsWon})
+        pointsWon: p1pointsWon
+      });
+      $lastplay.text(p1Name + ' serves an Ace!');
     } else if ($this.attr('id') === 'p1winner') {
       p1gameProgressor();
       p1winners += 1;
       p1pointsWon += 1;
       playerOneRef.update({
         winners: p1winners,
-        pointsWon: p1pointsWon})
+        pointsWon: p1pointsWon});
+      $lastplay.text(p1Name + ' takes the point with a winner.');
     } else if ($this.attr('id') === 'p1oppUFE') {
       p1gameProgressor();
       p2UFE += 1;
@@ -237,12 +244,14 @@ $(document).ready(function() {
       playerTwoRef.update({
         unforcedErrors: p2UFE
       });
+      $lastplay.text(p2Name + ' commits an unforced error. ' + p1Name + ' takes the point.' );
     } else if ($this.attr('id') === 'p1fault') {
       p1pointFaults += 1;
       p1totalFaults += 1;
       playerOneRef.update({
         faults: p1totalFaults
       });
+      $lastplay.text(p1Name + " faults. It's his first fault of this point and he will serve again.");
       if (p1pointFaults === 2) {
         p2gameProgressor();
         p2pointsWon += 1;
@@ -253,6 +262,7 @@ $(document).ready(function() {
         playerTwoRef.update({
           pointsWon: p2pointsWon
         });
+        $lastplay.text(p1Name + " double-faults! " + p2Name + " takes the point.");
       }
     } else {
       console.log('error')
@@ -263,6 +273,8 @@ $(document).ready(function() {
 // Player 2 Button Commands
   $('button2').on('click', function(event) {
     var $this = $(this);
+    var p1Name = $p1scoreboard.text();
+    var p2Name = $p2scoreboard.text();
     if ($this.attr('id') === 'p2ace') {
       p2gameProgressor();
       p2aces += 1;
@@ -271,6 +283,7 @@ $(document).ready(function() {
         aces: p2aces,
         pointsWon: p2pointsWon
       });
+      $lastplay.text(p2Name + ' serves an Ace!');
     } else if ($this.attr('id') === 'p2winner') {
       p2gameProgressor();
       p2winners += 1;
@@ -279,6 +292,7 @@ $(document).ready(function() {
         winners: p2winners,
         pointsWon: p2pointsWon
       });
+      $lastplay.text(p2Name + ' takes the point with a winner.');
     } else if ($this.attr('id') === 'p2oppUFE') {
       p2gameProgressor();
       p1UFE += 1;
@@ -289,12 +303,14 @@ $(document).ready(function() {
       playerTwoRef.update({
         pointsWon: p2pointsWon
       });
+      $lastplay.text(p1Name + ' commits an unforced error. ' + p2Name + ' takes the point.' );
     } else if ($this.attr('id') === 'p2fault') {
       p2pointFaults += 1;
       p2totalFaults += 1;
       playerTwoRef.update({
         faults: p2totalFaults
       });
+      $lastplay.text(p2Name + " faults. It's his first fault of this point and he will serve again.");
       if (p2pointFaults === 2) {
         p1gameProgressor();
         p1pointsWon += 1;
@@ -305,6 +321,7 @@ $(document).ready(function() {
         playerOneRef.update({
           pointsWon: p1pointsWon
         });
+        $lastplay.text(p2Name + " double-faults! " + p1Name + " takes the point.");
       }
     } else {
       console.log('error')
