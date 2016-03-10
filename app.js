@@ -34,13 +34,12 @@ $(document).ready(function() {
   var $p1summaryHead = $('#p1summaryHead');
   var $p2summaryHead = $('#p2summaryHead');
   var $lastplay = $('#lastplay');
-
-  // var $p1gamesTotal = $('#p1gamesTotal');
-  // var $p2gamesTotal = $('#p2gamesTotal');
-  // var $p1ptsTotal = $('#p1ptsTotal');
-  // var $p2ptsTotal = $('#p2ptsTotal');
-  // var $p1acesTotal = $('#p1acesTotal');
-  // var $p2acesTotal = $('#p2acesTotal');
+  var $p1gamesTotal = $('#p1gamesTotal');
+  var $p2gamesTotal = $('#p2gamesTotal');
+  var $p1ptsTotal = $('#p1ptsTotal');
+  var $p2ptsTotal = $('#p2ptsTotal');
+  var $p1acesTotal = $('#p1acesTotal');
+  var $p2acesTotal = $('#p2acesTotal');
 
 // Firebase Code
   var myDataRef = new Firebase ('https://tennistally.firebaseio.com/');
@@ -63,6 +62,7 @@ $(document).ready(function() {
       name: playerTwoName,
       email: playerTwoEmail,
     });
+    window.location.href('url(gamepage.html)');
   })
 
   playerOneRef.on('value', function(data) {
