@@ -41,35 +41,24 @@ $(document).ready(function() {
   // var $p1acesTotal = $('#p1acesTotal');
   // var $p2acesTotal = $('#p2acesTotal');
 
-
-  // $('#playerOneButton').on('click', function(event) {
-  //   var playerOneName = $('#playerOneName').val();
-  //   $('#playerOneServeButton').text(playerOneName);
-  //   console.log(playerOneName);
-  // });
-  //
-  // $('#playerTwoButton').click(function() {
-  //   var playerTwoName = $('#playerTwoName').val();
-  //   $('#playerTwoServeButton').text(playerTwoName);
-  // });
-
-  // Firebase Code
+// Firebase Code
   var myDataRef = new Firebase ('https://tennistally.firebaseio.com/');
 
   var playerOneRef = new Firebase ('https://tennistally.firebaseio.com/playerone');
 
   var playerTwoRef = new Firebase ('https://tennistally.firebaseio.com/playertwo');
 
+  // Begin Firebase Name Linking
   $('#playerForm').on('submit', function(event) {
     var playerOneName = $('#playerOneName').val();
     var playerTwoName = $('#playerTwoName').val();
     var playerOneEmail = $('#playerOneEmail').val();
     var playerTwoEmail = $('#playerTwoEmail').val();
-    playerOneRef.set({
+    playerOneRef.update({
       name: playerOneName,
       email: playerOneEmail,
     });
-    playerTwoRef.set({
+    playerTwoRef.update({
       name: playerTwoName,
       email: playerTwoEmail,
     });
@@ -87,11 +76,14 @@ $(document).ready(function() {
     var p2name = data.val().name;
     $p2scoreboard.text(p2name);
     $p2currGame.text(p2name);
-    $p2gameAction.text(p2name); 
+    $p2gameAction.text(p2name);
     $p2summaryHead.text(p2name);
   })
+  // End Firebase Name Linking
 
+// End Firebase Code
 
+// Active Set Selector Function
   function activeSetSelector(activeSet) {
     if (activeSet === 1) {
       $p1activeSet = $('#p1set1')
@@ -116,7 +108,9 @@ $(document).ready(function() {
       $p2activeSet = $('#p2set7')
     }
   };
+// End Active Set Selector Function
 
+// Scoring Progression Functions (one for each player)
   function p1gameProgressor() {
     var p1pointScore = $p1points.text();
     var p1count = parseInt(p1pointScore);
@@ -214,7 +208,7 @@ $(document).ready(function() {
     p1pointFaults = 0;
     p2pointFaults = 0;
     }
-
+// End Scoring Progression Functions
 
 // Player 1 Button Commands
   $('button1').on('click', function(event) {
@@ -223,22 +217,42 @@ $(document).ready(function() {
       p1gameProgressor();
       p1aces += 1;
       p1pointsWon += 1;
-      $p1acesTotal.text(p1aces);
+      playerOneRef.update({
+        aces: p1aces,
+        pointsWon: p1pointsWon})
     } else if ($this.attr('id') === 'p1winner') {
       p1gameProgressor();
       p1winners += 1;
       p1pointsWon += 1;
+      playerOneRef.update({
+        winners: p1winners,
+        pointsWon: p1pointsWon})
     } else if ($this.attr('id') === 'p1oppUFE') {
       p1gameProgressor();
       p2UFE += 1;
-      p2pointsWon += 1;
+      p1pointsWon += 1;
+      playerOneRef.update({
+        pointsWon: p1pointsWon
+      });
+      playerTwoRef.update({
+        unforcedErrors: p2UFE
+      });
     } else if ($this.attr('id') === 'p1fault') {
       p1pointFaults += 1;
       p1totalFaults += 1;
+      playerOneRef.update({
+        faults: p1totalFaults
+      });
       if (p1pointFaults === 2) {
         p2gameProgressor();
         p2pointsWon += 1;
         p1dblFaults += 1;
+        playerOneRef.update({
+          doubleFaults: p1dblFaults
+        });
+        playerTwoRef.update({
+          pointsWon: p2pointsWon
+        });
       }
     } else {
       console.log('error')
@@ -253,21 +267,44 @@ $(document).ready(function() {
       p2gameProgressor();
       p2aces += 1;
       p2pointsWon == 1;
+      playerTwoRef.update({
+        aces: p2aces,
+        pointsWon: p2pointsWon
+      });
     } else if ($this.attr('id') === 'p2winner') {
       p2gameProgressor();
       p2winners += 1;
       p2pointsWon += 1;
+      playerTwoRef.update({
+        winners: p2winners,
+        pointsWon: p2pointsWon
+      });
     } else if ($this.attr('id') === 'p2oppUFE') {
       p2gameProgressor();
       p1UFE += 1;
-      p1UFE += 1;
+      p2pointsWon += 1;
+      playerOneRef.update({
+        unforcedErrors: p1UFE
+      });
+      playerTwoRef.update({
+        pointsWon: p2pointsWon
+      });
     } else if ($this.attr('id') === 'p2fault') {
       p2pointFaults += 1;
       p2totalFaults += 1;
+      playerTwoRef.update({
+        faults: p2totalFaults
+      });
       if (p2pointFaults === 2) {
         p1gameProgressor();
         p1pointsWon += 1;
         p2dblFaults += 1;
+        playerTwoRef.update({
+          doubleFaults: p2dblFaults
+        });
+        playerOneRef.update({
+          pointsWon: p1pointsWon
+        });
       }
     } else {
       console.log('error')
