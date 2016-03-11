@@ -15,8 +15,32 @@
 
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    $(window).load(function(){
+        $('#myModalOnLoad').modal('show');
+    });
+    </script>
+
   </head>
   <body class = "container-fixed">
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModalOnLoad">
+      <div class="modal-dialog" style="margin-top: 15%">
+      <div class="modal-content">
+        <div class="modal-body" style="padding-bottom: 100px">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center" style="font-size: 30px; font-weight:bold">Who Serves First?</h4>
+          <div class="col-md-12 text-center" style="padding-top: 20px">
+            <button type="button" class="btn btn-lg btn-info" data-dismiss="modal" id="p1serveButton" ></button>
+            <button type="button" class="btn btn-lg btn-warning" data-dismiss="modal" id="p2serveButton" ></button>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
   <div class="row">
     <div class="col-md-2 text-center">
@@ -155,9 +179,6 @@
     </div>
   </div>
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <!-- My JS -->

@@ -54,6 +54,8 @@ $(document).ready(function() {
   var $p2setsWon = $('#p2setsWon');
   var $playbyplay = $('#playbyplay');
   var $alertbar = $('#alertbar');
+  var $p1serveButton = $('#p1serveButton');
+  var $p2serveButton = $('#p2serveButton');
 
 // Firebase Code
   var myDataRef = new Firebase ('https://tennistally.firebaseio.com/');
@@ -93,6 +95,7 @@ $(document).ready(function() {
     $p1scoreboard.text(p1name);
     $p1currGame.text(p1name);
     $p1gameAction.text(p1name);
+    $p1serveButton.text(p1name);
     $p1summaryHead.text(p1name);
     $p1gamesTotal.text(p1gamesWon);
     $p1ptsTotal.text(p1pointsWon);
@@ -101,17 +104,6 @@ $(document).ready(function() {
     $p1faultsTotal.text(p1faults);
     $p1dblFaultsTotal.text(p1dblFaults);
     $p1winnersTotal.text(p1winners);
-    if (p1aces === 5) {
-      var newElements = [
-        "<img class='fiveaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
-        "<p class='fiveaces' style='display:inline'> STAT ALERT: That is " + p1name + "'s fifth Ace of the game!! </p>",
-        "<img class='fiveaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
-      ];
-      $alertbar.append(newElements);
-      setTimeout(function() {
-        $('.fiveaces').remove()
-      }, 5000);
-    };
   })
 
   playerTwoRef.on('value', function(data) {
@@ -126,6 +118,7 @@ $(document).ready(function() {
     $p2scoreboard.text(p2name);
     $p2currGame.text(p2name);
     $p2gameAction.text(p2name);
+    $p2serveButton.text(p2name);
     $p2summaryHead.text(p2name);
     $p2gamesTotal.text(p2gamesWon);
     $p2ptsTotal.text(p2pointsWon);
@@ -134,13 +127,6 @@ $(document).ready(function() {
     $p2faultsTotal.text(p2faults);
     $p2dblFaultsTotal.text(p2dblFaults);
     $p2winnersTotal.text(p2winners);
-    if (p2aces === 5) {
-      $alertbar.append([
-        "<img src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
-        "<p style='display:inline'> STAT ALERT: That is " + p2name + "'s fifth Ace of the game!! </p>",
-        "<img src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
-      ])
-    };
   })
 
   playByPlayRef.on('value', function(data) {
@@ -340,7 +326,17 @@ $(document).ready(function() {
         p2points: $p2points.text(),
         p1games: p1games,
         p2games: p2games
-      })
+      });
+      if (p1aces === 5) {
+        $alertbar.append([
+          "<img class = 'fiveaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+          "<p class = 'fiveaces' style='display:inline'> STAT ALERT: That is " + p1Name + "'s fifth Ace of the game!! </p>",
+          "<img class = 'fiveaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+        ])
+        setTimeout(function() {
+          $('.fiveaces').remove()
+        }, 5000);
+      };
 
     } else if ($this.attr('id') === 'p1winner') {
       p1gameProgressor();
@@ -418,7 +414,29 @@ $(document).ready(function() {
           p2points: $p2points.text(),
           p1games: p1games,
           p2games: p2games
-        })
+        });
+        if (p1dblFaults === 3) {
+          var faultElements = [
+            "<img class='threefaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+            "<p class='threefaults' style='display:inline'> STAT ALERT: Oh no. " + p1Name + " has now double-faulted three times! </p>",
+            "<img class='threefaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+          ];
+          $alertbar.append(faultElements);
+          setTimeout(function() {
+            $('.threefaults').remove()
+          }, 5000);
+        };
+        if (p1dblFaults === 6) {
+          var faultElements = [
+            "<img class='sixfaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+            "<p class='sixfaults' style='display:inline'> STAT ALERT: Where has " + p1Name + "'s serve gone?! That is six double-faults! </p>",
+            "<img class='sixfaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+          ];
+          $alertbar.append(faultElements);
+          setTimeout(function() {
+            $('.sixfaults').remove()
+          }, 5000);
+        };
       }
     } else {
       console.log('error')
@@ -450,6 +468,16 @@ $(document).ready(function() {
         p1games: p1games,
         p2games: p2games
       });
+      if (p2aces === 5) {
+        $alertbar.append([
+          "<img class = 'fiveaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+          "<p class = 'fiveaces' style='display:inline'> STAT ALERT: That is " + p2Name + "'s fifth Ace of the game!! </p>",
+          "<img class = 'fiveaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+        ])
+        setTimeout(function() {
+          $('.fiveaces').remove()
+        }, 5000);
+      };
     } else if ($this.attr('id') === 'p2winner') {
       p2gameProgressor();
       p2winners += 1;
@@ -526,16 +554,34 @@ $(document).ready(function() {
           p2points: $p2points.text(),
           p1games: p1games,
           p2games: p2games
-        })
+        });
+        if (p2dblFaults === 3) {
+          var faultElements = [
+            "<img class='threefaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+            "<p class='threefaults' style='display:inline'> STAT ALERT: Oh no. " + p2Name + " has now double-faulted three times! </p>",
+            "<img class='threefaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+          ];
+          $alertbar.append(faultElements);
+          setTimeout(function() {
+            $('.threefaults').remove()
+          }, 5000);
+        };
+        if (p2dblFaults === 6) {
+          var faultElements = [
+            "<img class='sixfaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+            "<p class='sixfaults' style='display:inline'> STAT ALERT: Where has " + p2Name + "'s serve gone?! That is six double-faults! </p>",
+            "<img class='sixfaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+          ];
+          $alertbar.append(faultElements);
+          setTimeout(function() {
+            $('.sixfaults').remove()
+          }, 5000);
+        };
       }
     } else {
       console.log('error')
     }
   })
 // End of Player 2 Button Commands
-  //
-  // $('#toMatchSummary').on('click', function(event){
-  //   window.location.href('url(matchsummary.html)')
-  // })
 
 })
