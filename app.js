@@ -22,6 +22,8 @@ $(document).ready(function() {
   var p2winners = 0;
   var p1UFE = 0;
   var p2UFE = 0;
+  var p1servesBroken = 0;
+  var p2servesBroken = 0;
   var $p1points = $('#p1points');
   var $p2points = $('#p2points');
   var activeSet = 1;
@@ -56,24 +58,48 @@ $(document).ready(function() {
   var $alertbar = $('#alertbar');
   var $p1serveButton = $('#p1serveButton');
   var $p2serveButton = $('#p2serveButton');
-  var p1firstServe = 2;
-  var p2firstServe
+  var p1serving = false;
+  var p2serving = false;
   var $p1baseline = $('#p1baseline');
   var $p2baseline = $('#p2baseline');
 
   $p1serveButton.on('click', function(event){
-    p1firstServe = true;
-    var p2firstServe = false;
-    $p1baseline.append('<server> SERVING </server>');
-    console.log(p1firstServe);
+    $p1baseline.append('<server id="p1serving"> SERVING </server>');
+    p1serving = true;
+    $('#p2ace').toggle();
+    $('#p2fault').toggle();
   })
-  console.log(p1firstServe);
 
   $p2serveButton.on('click', function(event){
-    var p2firstServe = true;
-    var p1firstServe = false;
-    $p2baseline.append('<server> SERVING </server>');
+    $p2baseline.append('<server id="p2serving"> SERVING </server>');
+    p2serving = true;
+    $('#p1ace').toggle();
+    $('#p1fault').toggle();
   })
+
+  var serveChecker = function() {
+  if (p1serving === true) {
+    console.log("p1 is serving");
+    $('#p1serving').remove();
+    p1serving = false;
+    p2serving = true;
+    $p2baseline.append('<server id="p2serving"> SERVING </server>');
+    $('#p1ace').toggle();
+    $('#p1fault').toggle();
+    $('#p2ace').toggle();
+    $('#p2fault').toggle();
+  } else if (p2serving === true){
+    console.log("p2 is serving");
+    p1serving = true;
+    p2serving = false;
+    $p1baseline.append('<server id="p1serving"> SERVING </server>');
+    $('#p2serving').remove();
+    $('#p1ace').toggle();
+    $('#p1fault').toggle();
+    $('#p2ace').toggle();
+    $('#p2fault').toggle();
+  };
+}
 
 // Firebase Code
   var myDataRef = new Firebase ('https://tennistally.firebaseio.com/');
@@ -229,10 +255,12 @@ $(document).ready(function() {
         if (p1games < 7) {
             p1games +=1;
             p1gamesWon += 1;
+            serveChecker();
             activeSetSelector(activeSet);
             $p1activeSet.text(p1games);
             if (p1games === 7) {
               p1gamesWon += 1;
+              serveChecker();
               activeSet += 1;
               p1setsWon += 1;
               $p1setsWon.text(p1setsWon);
@@ -247,10 +275,12 @@ $(document).ready(function() {
         if (p1games < 7) {
             p1games +=1;
             p1gamesWon += 1;
+            serveChecker();
             activeSetSelector(activeSet);
             $p1activeSet.text(p1games);
             if (p1games === 7) {
               p1gamesWon += 1;
+              serveChecker();
               activeSet += 1;
               p1setsWon += 1;
               $p1setsWon.text(p1setsWon);
@@ -288,10 +318,12 @@ $(document).ready(function() {
         if (p2games < 7) {
             p2games +=1;
             p2gamesWon += 1;
+            serveChecker();
             activeSetSelector(activeSet);
             $p2activeSet.text(p2games);
             if (p2games === 7) {
               p2gamesWon += 1;
+              serveChecker();
               activeSet +=1;
               p2setsWon += 1;
               $p2setsWon.text(p2setsWon);
@@ -306,10 +338,12 @@ $(document).ready(function() {
         if (p2games < 7) {
             p2games +=1;
             p2gamesWon += 1;
+            serveChecker();
             activeSetSelector(activeSet);
             $p2activeSet.text(p2games);
             if (p2games === 7) {
               p2gamesWon += 1;
+              serveChecker();
               activeSet += 1;
               p2setsWon += 1;
               $p2setsWon.text(p2setsWon);
