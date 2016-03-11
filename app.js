@@ -56,6 +56,24 @@ $(document).ready(function() {
   var $alertbar = $('#alertbar');
   var $p1serveButton = $('#p1serveButton');
   var $p2serveButton = $('#p2serveButton');
+  var p1firstServe = 2;
+  var p2firstServe
+  var $p1baseline = $('#p1baseline');
+  var $p2baseline = $('#p2baseline');
+
+  $p1serveButton.on('click', function(event){
+    p1firstServe = true;
+    var p2firstServe = false;
+    $p1baseline.append('<server> SERVING </server>');
+    console.log(p1firstServe);
+  })
+  console.log(p1firstServe);
+
+  $p2serveButton.on('click', function(event){
+    var p2firstServe = true;
+    var p1firstServe = false;
+    $p2baseline.append('<server> SERVING </server>');
+  })
 
 // Firebase Code
   var myDataRef = new Firebase ('https://tennistally.firebaseio.com/');
@@ -97,6 +115,9 @@ $(document).ready(function() {
     $p1gameAction.text(p1name);
     $p1serveButton.text(p1name);
     $p1summaryHead.text(p1name);
+    $('#p1pointsPBP').text(p1name);
+    $('#p1gamesPBP').text(p1name);
+    $('#p1setsPBP').text(p1name);
     $p1gamesTotal.text(p1gamesWon);
     $p1ptsTotal.text(p1pointsWon);
     $p1acesTotal.text(p1aces);
@@ -120,6 +141,9 @@ $(document).ready(function() {
     $p2gameAction.text(p2name);
     $p2serveButton.text(p2name);
     $p2summaryHead.text(p2name);
+    $('#p2pointsPBP').text(p2name);
+    $('#p2gamesPBP').text(p2name);
+    $('#p2setsPBP').text(p2name);
     $p2gamesTotal.text(p2gamesWon);
     $p2ptsTotal.text(p2pointsWon);
     $p2acesTotal.text(p2aces);
@@ -137,9 +161,9 @@ $(document).ready(function() {
     var p2currSets = data.val().p2sets;
     var p2currGames = data.val().p2games;
     var p2currPoints = data.val().p2points;
-    $('#playbyplay').append('<tr> <td>' + play + '</td> <td>' + p1currSets + '</td> <td>' + p1currGames + '</td> <td>' + p1currPoints + '</td> <td>' + p2currSets + '</td> <td>' + p2currGames + '</td> <td>' + p2currPoints + '</td> </tr>');
+    $('#playbyplay').append('<tr> <td>' + play + '</td> <td class = "text-center">' + p1currPoints + '</td> <td class = "text-center">' + p2currPoints + '</td> <td class = "text-center">' + p1currGames + '</td> <td class = "text-center">' + p2currGames + '</td> <td class = "text-center">' + p1currSets + '</td> <td class = "text-center">' + p2currSets + '</td> </tr>');
   })
-  // End Firebase Name Linking
+  // End Firebase Name + Stat Linking
 
 // End Firebase Code
 
