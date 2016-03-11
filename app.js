@@ -54,6 +54,8 @@ $(document).ready(function() {
   var $p2ufeTotal = $('#p2ufeTotal');
   var $p1setsWon = $('#p1setsWon');
   var $p2setsWon = $('#p2setsWon');
+  var $p1servesBroken = $('#p1servesBroken');
+  var $p2servesBroken = $('#p2servesBroken');
   var $playbyplay = $('#playbyplay');
   var $alertbar = $('#alertbar');
   var $p1serveButton = $('#p1serveButton');
@@ -62,6 +64,8 @@ $(document).ready(function() {
   var p2serving = false;
   var $p1baseline = $('#p1baseline');
   var $p2baseline = $('#p2baseline');
+  var $p1setsTotal = $('#p1setsTotal');
+  var $p2setsTotal = $('#p1setsTotal');
 
   $p1serveButton.on('click', function(event){
     $p1baseline.append('<server id="p1serving"> SERVING </server>');
@@ -136,6 +140,7 @@ $(document).ready(function() {
     var p1faults = data.val().faults;
     var p1dblFaults = data.val().doubleFaults;
     var p1winners = data.val().winners;
+    var p1servesBroken = data.val().servesBroken;
     $p1scoreboard.text(p1name);
     $p1currGame.text(p1name);
     $p1gameAction.text(p1name);
@@ -148,6 +153,7 @@ $(document).ready(function() {
     $p1ptsTotal.text(p1pointsWon);
     $p1acesTotal.text(p1aces);
     $p1ufeTotal.text(p1UFE);
+    $p1servesBroken.text(p1servesBroken);
     $p1faultsTotal.text(p1faults);
     $p1dblFaultsTotal.text(p1dblFaults);
     $p1winnersTotal.text(p1winners);
@@ -162,6 +168,7 @@ $(document).ready(function() {
     var p2faults = data.val().faults;
     var p2dblFaults = data.val().doubleFaults;
     var p2winners = data.val().winners;
+    var p2servesBroken = data.val().servesBroken;
     $p2scoreboard.text(p2name);
     $p2currGame.text(p2name);
     $p2gameAction.text(p2name);
@@ -177,6 +184,7 @@ $(document).ready(function() {
     $p2faultsTotal.text(p2faults);
     $p2dblFaultsTotal.text(p2dblFaults);
     $p2winnersTotal.text(p2winners);
+    $p2servesBroken.text(p2servesBroken);
   })
 
   playByPlayRef.on('value', function(data) {
@@ -187,7 +195,9 @@ $(document).ready(function() {
     var p2currSets = data.val().p2sets;
     var p2currGames = data.val().p2games;
     var p2currPoints = data.val().p2points;
-    $('#playbyplay').append('<tr> <td>' + play + '</td> <td class = "text-center">' + p1currPoints + '</td> <td class = "text-center">' + p2currPoints + '</td> <td class = "text-center">' + p1currGames + '</td> <td class = "text-center">' + p2currGames + '</td> <td class = "text-center">' + p1currSets + '</td> <td class = "text-center">' + p2currSets + '</td> </tr>');
+    $('#p1setsTotal').text(p1currSets);
+    $('#p2setsTotal').text(p2currSets);
+    $('#playbyplay').append('<tr> <td>' + play + '</td> <td class = "text-center">' + p1currPoints + '</td> <td class = "text-center">' + p2currPoints + '</td> <td class = "text-center" style = "font-weight: bold">' + p1currGames + '</td> <td class = "text-center" style = "font-weight: bold">' + p2currGames + '</td> <td class = "text-center" style = "font-weight: bold; font-size: 20px; padding-top: 5px">' + p1currSets + '</td> <td class = "text-center" style = "font-weight: bold; font-size: 20px; padding-top: 5px">' + p2currSets + '</td> </tr>');
   })
   // End Firebase Name + Stat Linking
 
@@ -227,7 +237,7 @@ $(document).ready(function() {
         $p2activeSet.text(0);
       }
     } else {
-      alert("The game has ended!")
+      alert("The game has ended! Click the End Match button to be taken to the Match Summary.");
     }
   };
 // End Active Set Selector Function
@@ -254,12 +264,18 @@ $(document).ready(function() {
         $p2points.text(0);
         if (p1games < 7) {
             p1games +=1;
+            if (p2serving === true) {
+              p2servesBroken += 1;
+            };
             p1gamesWon += 1;
             serveChecker();
             activeSetSelector(activeSet);
             $p1activeSet.text(p1games);
             if (p1games === 7) {
               p1gamesWon += 1;
+              if (p2serving === true) {
+                p2servesBroken += 1;
+              };
               serveChecker();
               activeSet += 1;
               p1setsWon += 1;
@@ -275,11 +291,17 @@ $(document).ready(function() {
         if (p1games < 7) {
             p1games +=1;
             p1gamesWon += 1;
+            if (p2serving === true) {
+              p2servesBroken += 1;
+            };
             serveChecker();
             activeSetSelector(activeSet);
             $p1activeSet.text(p1games);
             if (p1games === 7) {
               p1gamesWon += 1;
+              if (p2serving === true) {
+                p2servesBroken += 1;
+              };
               serveChecker();
               activeSet += 1;
               p1setsWon += 1;
@@ -317,12 +339,28 @@ $(document).ready(function() {
         $p1points.text(0);
         if (p2games < 7) {
             p2games +=1;
+            if (p1serving === true) {
+              p1servesBroken += 1;
+            };
+            // if (p1servesBroken === 3) {
+            //   $alertbar.append([
+            //     "<img class = 'servesbroken' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+            //     "<p class = 'servesbroken' style='display:inline'> STAT ALERT: Not even Andy Roddick could get a serve by " + p2Name + " today! He's broken the serve of " + p1Name + " for the third time! </p>",
+            //     "<img class = 'servesbroken' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+            //   ])
+            //   setTimeout(function() {
+            //     $('.servesbroken').remove()
+            //   }, 5000);
+            // };
             p2gamesWon += 1;
             serveChecker();
             activeSetSelector(activeSet);
             $p2activeSet.text(p2games);
             if (p2games === 7) {
               p2gamesWon += 1;
+              if (p1serving === true) {
+                p1servesBroken += 1;
+              };
               serveChecker();
               activeSet +=1;
               p2setsWon += 1;
@@ -338,11 +376,17 @@ $(document).ready(function() {
         if (p2games < 7) {
             p2games +=1;
             p2gamesWon += 1;
+            if (p1serving === true) {
+              p1servesBroken += 1;
+            };
             serveChecker();
             activeSetSelector(activeSet);
             $p2activeSet.text(p2games);
             if (p2games === 7) {
               p2gamesWon += 1;
+              if (p1serving === true) {
+                p1servesBroken += 1;
+              };
               serveChecker();
               activeSet += 1;
               p2setsWon += 1;
@@ -395,7 +439,16 @@ $(document).ready(function() {
           $('.fiveaces').remove()
         }, 5000);
       };
-
+      if (p1aces === 10) {
+        $alertbar.append([
+          "<img class = 'tenaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+          "<p class = 'tenaces' style='display:inline'> STAT ALERT: Watch your hands, " + p1Name + " ... your racquet is literally on fire! That's TEN ACES! </p>",
+          "<img class = 'tenaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+        ])
+        setTimeout(function() {
+          $('.tenaces').remove()
+        }, 5000);
+      };
     } else if ($this.attr('id') === 'p1winner') {
       p1gameProgressor();
       p1winners += 1;
@@ -405,6 +458,9 @@ $(document).ready(function() {
         pointsWon: p1pointsWon,
         gamesWon: p1gamesWon
       });
+      playerTwoRef.update({
+        servesBroken: p2servesBroken
+      })
       $lastplay.text(p1Name + ' takes the point with a winner.');
       playByPlayRef.set({
         play: p1Name + ' takes the point with a winner.',
@@ -424,7 +480,8 @@ $(document).ready(function() {
         gamesWon: p1gamesWon
       });
       playerTwoRef.update({
-        unforcedErrors: p2UFE
+        unforcedErrors: p2UFE,
+        servesBroken: p2servesBroken
       });
       $lastplay.text(p2Name + ' commits an unforced error. ' + p1Name + ' takes the point.' );
       playByPlayRef.set({
@@ -461,7 +518,7 @@ $(document).ready(function() {
         });
         playerTwoRef.update({
           pointsWon: p2pointsWon,
-          gamesWon: p2gamesWon
+          gamesWon: p2gamesWon,
         });
         $lastplay.text(p1Name + " double-faults! " + p2Name + " takes the point.");
         playByPlayRef.set({
@@ -493,6 +550,17 @@ $(document).ready(function() {
           $alertbar.append(faultElements);
           setTimeout(function() {
             $('.sixfaults').remove()
+          }, 5000);
+        };
+        if (p1dblFaults === 10) {
+          var faultElements = [
+            "<img class='tenfaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+            "<p class='tenfaults' style='display:inline'> STAT ALERT: " + p1Name + " had a few too many last night; in fact, he may still be drunk. That was his TENTH DOUBLE-FAULT! </p>",
+            "<img class='tenfaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+          ];
+          $alertbar.append(faultElements);
+          setTimeout(function() {
+            $('.tenfaults').remove()
           }, 5000);
         };
       }
@@ -536,6 +604,16 @@ $(document).ready(function() {
           $('.fiveaces').remove()
         }, 5000);
       };
+      if (p2aces === 10) {
+        $alertbar.append([
+          "<img class = 'tenaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+          "<p class = 'tenaces' style='display:inline'> STAT ALERT: Watch your hands, " + p2Name + " ... your racquet is literally on fire! That's TEN ACES! </p>",
+          "<img class = 'tenaces' src= 'images/fire.png' alt = 'fire' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+        ])
+        setTimeout(function() {
+          $('.tenaces').remove()
+        }, 5000);
+      };
     } else if ($this.attr('id') === 'p2winner') {
       p2gameProgressor();
       p2winners += 1;
@@ -544,6 +622,9 @@ $(document).ready(function() {
         winners: p2winners,
         pointsWon: p2pointsWon,
         gamesWon: p2gamesWon
+      });
+      playerOneRef.update({
+        servesBroken: p1servesBroken
       });
       $lastplay.text(p2Name + ' takes the point with a winner.');
       playByPlayRef.set({
@@ -560,7 +641,8 @@ $(document).ready(function() {
       p1UFE += 1;
       p2pointsWon += 1;
       playerOneRef.update({
-        unforcedErrors: p1UFE
+        unforcedErrors: p1UFE,
+        servesBroken: p1servesBroken
       });
       playerTwoRef.update({
         pointsWon: p2pointsWon,
@@ -633,6 +715,17 @@ $(document).ready(function() {
           $alertbar.append(faultElements);
           setTimeout(function() {
             $('.sixfaults').remove()
+          }, 5000);
+        };
+        if (p2dblFaults === 10) {
+          var faultElements = [
+            "<img class='tenfaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-right: 5px;'/>",
+            "<p class='tenfaults' style='display:inline'> STAT ALERT: " + p2Name + " had a few too many last night; in fact, he may still be drunk. That was his TENTH DOUBLE-FAULT! </p>",
+            "<img class='tenfaults' src= 'images/snowflakes.png' alt = 'icecold' style='width:20px; height:20px; display: inline; margin-left: 5px;'/>"
+          ];
+          $alertbar.append(faultElements);
+          setTimeout(function() {
+            $('.tenfaults').remove()
           }, 5000);
         };
       }

@@ -26,6 +26,9 @@
 
   </head>
   <body class = "container-fixed">
+    <audio autoplay>
+      <source src="audio/politeApplause.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="modal fade" tabindex="-1" role="dialog" id="myModalOnLoad">
       <div class="modal-dialog" style="margin-top: 15%">
@@ -34,15 +37,15 @@
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title text-center" style="font-size: 30px; font-weight:bold">Who Serves First?</h4>
           <div class="col-md-12 text-center" style="padding-top: 20px">
-            <button type="button" class="btn btn-lg btn-info" data-dismiss="modal" id="p1serveButton" ></button>
-            <button type="button" class="btn btn-lg btn-warning" data-dismiss="modal" id="p2serveButton" ></button>
+            <button type="button" class="btn btn-lg btn-info fade" data-dismiss="modal" id="p1serveButton" ></button>
+            <button type="button" class="btn btn-lg btn-warning fade" data-dismiss="modal" id="p2serveButton" ></button>
           </div>
         </div>
       </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-  <div class="row">
+  <div class="row" id = "scoreboard">
     <div class="col-md-2 text-center">
       <h4> <em> Current Game </em> <small></small></h4>
       <table class = "table table-condensed table-bordered">
@@ -118,7 +121,7 @@
 
   <p1buttons class="row">
     <div class="col-md-4 col-md-offset-2 text-right">
-      <h1 style="position: absolute; margin-top: 2%; margin-left: 30%" id="p1gameAction"> Player 1 <small></small></h1>
+      <h1 style="position: absolute; margin-top: 2%; margin-left: 15%" id="p1gameAction"> Player 1 <small></small></h1>
     </div>
       <div class="col-md-4 text-center">
       <button1 type="button" class="btn btn-danger btn-lg" id = "p1fault">Fault</button1>
@@ -144,17 +147,17 @@
         </servebox>
         <servebox class ="col-md-2">
         </servebox>
-        <baseline class="row col-md-4 col-md-offset-4" id="p2baseline"> 
+        <baseline class="row col-md-4 col-md-offset-4" id="p2baseline">
         </baseline>
       </tenniscourt>
       <playbox class="col-md-4 text-left" style="position: absolute; margin-top: 50px; margin-left: -175px">
-        <h3 class = "text-center"> <strong> LAST PLAY </strong> <br> <small id = "lastplay"> <em> waiting for match to begin </em> </small> </h3>
+        <h1 class = "text-center"> <strong> LAST PLAY </strong> <br> <small id = "lastplay"> <em> waiting for match to begin </em> </small> </h3>
       </playbox>
   </div>
 
   <p2buttons class="row">
     <div class="col-md-4 col-md-offset-2 text-right">
-      <h1 style="position: absolute; margin-top: 2%; margin-left: 30%" id="p2gameAction"> Player 2 <small></small></h1>
+      <h1 style="position: absolute; margin-top: 2%; margin-left: 15%" id="p2gameAction"> Player 2 <small></small></h1>
     </div>
     <div class="col-md-4 text-center">
       <button2 type="button" class="btn btn-danger btn-lg" id = "p2fault">Fault</button2>

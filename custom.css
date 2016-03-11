@@ -40,3 +40,16 @@ server {
   font-weight: bold;
   margin-left: 30%;
 }
+
+.fade {
+  transition: all 0.3s ease;
+  opacity: 0.75;
+}
+
+.fade:hover {
+  opacity: 1
+}
+
+.border:hover{
+  box-shadow: inset 0 0 0 25px #53a7ea;
+}
