@@ -66,6 +66,7 @@ $(document).ready(function() {
   var $p2baseline = $('#p2baseline');
   var $p1setsTotal = $('#p1setsTotal');
   var $p2setsTotal = $('#p1setsTotal');
+  var playCount = 0;
 
   $p1serveButton.on('click', function(event){
     $p1baseline.append('<server id="p1serving"> SERVING </server>');
@@ -187,8 +188,11 @@ $(document).ready(function() {
     $p2servesBroken.text(p2servesBroken);
   })
 
+// To fix the playByPlayRef ... need to PUSH the data (rather than setting it) and then, on every value change, drill into the LAST CHILD of the playByPlayRef to get the variables outlined below.
+
   playByPlayRef.on('value', function(data) {
     var play = data.val().play;
+    var playCounter = data.val().playCount;
     var p1currSets = data.val().p1sets;
     var p1currGames = data.val().p1games;
     var p1currPoints = data.val().p1points;
@@ -410,6 +414,7 @@ $(document).ready(function() {
     var $this = $(this);
     var p1Name = $p1scoreboard.text();
     var p2Name = $p2scoreboard.text();
+    playCount += 1;
     if ($this.attr('id') === 'p1ace') {
       p1gameProgressor();
       p1aces += 1;
@@ -427,7 +432,8 @@ $(document).ready(function() {
         p1points: $p1points.text(),
         p2points: $p2points.text(),
         p1games: p1games,
-        p2games: p2games
+        p2games: p2games,
+        playCounter: playCount
       });
       if (p1aces === 5) {
         $alertbar.append([
@@ -469,7 +475,8 @@ $(document).ready(function() {
         p1points: $p1points.text(),
         p2points: $p2points.text(),
         p1games: p1games,
-        p2games: p2games
+        p2games: p2games,
+        playCounter: playCount
       })
     } else if ($this.attr('id') === 'p1oppUFE') {
       p1gameProgressor();
@@ -491,7 +498,8 @@ $(document).ready(function() {
         p1points: $p1points.text(),
         p2points: $p2points.text(),
         p1games: p1games,
-        p2games: p2games
+        p2games: p2games,
+        playCounter: playCount
       })
     } else if ($this.attr('id') === 'p1fault') {
       p1pointFaults += 1;
@@ -507,7 +515,8 @@ $(document).ready(function() {
         p1points: $p1points.text(),
         p2points: $p2points.text(),
         p1games: p1games,
-        p2games: p2games
+        p2games: p2games,
+        playCounter: playCount
       })
       if (p1pointFaults === 2) {
         p2gameProgressor();
@@ -528,7 +537,8 @@ $(document).ready(function() {
           p1points: $p1points.text(),
           p2points: $p2points.text(),
           p1games: p1games,
-          p2games: p2games
+          p2games: p2games,
+          playCounter: playCount
         });
         if (p1dblFaults === 3) {
           var faultElements = [
@@ -575,6 +585,7 @@ $(document).ready(function() {
     var $this = $(this);
     var p1Name = $p1scoreboard.text();
     var p2Name = $p2scoreboard.text();
+    playCount += 1;
     if ($this.attr('id') === 'p2ace') {
       p2gameProgressor();
       p2aces += 1;
@@ -592,7 +603,8 @@ $(document).ready(function() {
         p1points: $p1points.text(),
         p2points: $p2points.text(),
         p1games: p1games,
-        p2games: p2games
+        p2games: p2games,
+        playCounter: playCount
       });
       if (p2aces === 5) {
         $alertbar.append([
@@ -634,7 +646,8 @@ $(document).ready(function() {
         p1points: $p1points.text(),
         p2points: $p2points.text(),
         p1games: p1games,
-        p2games: p2games
+        p2games: p2games,
+        playCounter: playCount
       })
     } else if ($this.attr('id') === 'p2oppUFE') {
       p2gameProgressor();
@@ -656,7 +669,8 @@ $(document).ready(function() {
         p1points: $p1points.text(),
         p2points: $p2points.text(),
         p1games: p1games,
-        p2games: p2games
+        p2games: p2games,
+        playCounter: playCount
       })
     } else if ($this.attr('id') === 'p2fault') {
       p2pointFaults += 1;
@@ -672,7 +686,8 @@ $(document).ready(function() {
         p1points: $p1points.text(),
         p2points: $p2points.text(),
         p1games: p1games,
-        p2games: p2games
+        p2games: p2games,
+        playCounter: playCount
       })
       if (p2pointFaults === 2) {
         p1gameProgressor();
@@ -693,7 +708,8 @@ $(document).ready(function() {
           p1points: $p1points.text(),
           p2points: $p2points.text(),
           p1games: p1games,
-          p2games: p2games
+          p2games: p2games,
+          playCounter: playCount
         });
         if (p2dblFaults === 3) {
           var faultElements = [
