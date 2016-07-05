@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="custom.css">
+
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- My JS -->
+    <script src="app.js"></script>
+  </head>
+  <body container="fixed">
+    <div class="row" style="margin-bottom:0px">
+      <div class="col-md-12">
+        <h1 class="text-center jumbotron" style="padding-top: 10px; padding-bottom: 10px">  <img src="images/tennisball.png" alt="tennisball" style="width: 75px; height: 75px"/> Play-by-Play <img src="images/tennisball.png" alt="tennisball" style="width: 75px; height: 75px"/> </h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-9 col-md-offset-1">
+        <table class="table table-bordered table-striped" id = "playbyplay">
+          <thead>
+            <th> </th>
+            <th colspan="2" class="text-center"> Points </th>
+            <th colspan="2" class="text-center"> Games </th>
+            <th colspan="2" class="text-center"> Sets </th>
+          </thead>
+          <thead>
+              <th> Event </th>
+              <th style="width: 20px" class = "text-center" id="p1pointsPBP"> P1 </th>
+              <th style="width: 20px" class = "text-center" id="p2pointsPBP"> P2 </th>
+              <th style="width: 20px" class = "text-center" id="p1gamesPBP"> P1 </th>
+              <th style="width: 20px" class = "text-center" id="p2gamesPBP"> P2 </th>
+              <th style="width: 20px" class = "text-center" id="p1setsPBP"> P1 </th>
+              <th style="width: 20px" class = "text-center" id="p2setsPBP"> P2 </th>
+          </thead>
+          <tbody>
+            <tr> </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>
