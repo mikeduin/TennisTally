@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="custom.css">
+
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- My JS -->
+    <script src="app.js"></script>
+
+  </head>
+  <body class = "container-fixed">
+    <div class="row col-md-12" style="margin-bottom:0px">
+      <div class="col-md-12">
+        <h1 class="text-center jumbotron" style="padding-top: 10px; padding-bottom: 10px">  <img src="images/tennisball.png" alt="tennisball" style="width: 75px; height: 75px"/> Match Summary <img src="images/tennisball.png" alt="tennisball" style="width: 75px; height: 75px"/> <br>
+          <!-- <small id = "matchWinnerHeader"> Winner: </small> -->
+        </h1>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-7 col-md-offset-2 text-center" >
+          <table class = "table table-striped">
+            <thead>
+              <th class = "text-center" style="font-size: 24px"> <strong>  </strong> </th>
+              <th class = "text-center" style="font-size: 24px" id = "p1summaryHead"> Player One </th>
+              <th class = "text-center" style="font-size: 24px" id = "p2summaryHead"> Player Two </th>
+            </thead>
+            <tbody>
+              <tr>
+                <td> <strong> Sets Won </strong> </td>
+                <td id = "p1setsTotal"> 0 </td>
+                <td id = "p2setsTotal"> 0 </td>
+              </tr>
+              <tr>
+                <td> <strong> Games Won </strong> </td>
+                <td id = "p1gamesTotal"> 0 </td>
+                <td id = "p2gamesTotal"> 0 </td>
+              </tr>
+              <tr>
+                <td> <strong> Points Won </strong> </td>
+                <td id = "p1ptsTotal"> 0 </td>
+                <td id = "p2ptsTotal"> 0 </td>
+              </tr>
+              <tr>
+                <td> <strong> Aces </strong> </td>
+                <td id = "p1acesTotal"> 0 </td>
+                <td id = "p2acesTotal"> 0 </td>
+              </tr>
+              <tr>
+                <td> <strong> Faults </strong> </td>
+                <td id = "p1faultsTotal"> 0 </td>
+                <td id = "p2faultsTotal"> 0 </td>
+              </tr>
+              <tr>
+                <td> <strong> Double-Faults </strong> </td>
+                <td id = "p1dblFaultsTotal"> 0 </td>
+                <td id = "p2dblFaultsTotal"> 0 </td>
+              </tr>
+              <tr>
+                <td> <strong> Winners </strong> </td>
+                <td id = "p1winnersTotal"> 0 </td>
+                <td id = "p2winnersTotal"> 0 </td>
+              </tr>
+              <tr>
+                <td> <strong> Unforced Errors </strong> </td>
+                <td id = "p1ufeTotal"> 0 </td>
+                <td id = "p2ufeTotal"> 0 </td>
+              </tr>
+              <tr>
+                <td> <strong> Service Games Broken </strong> </td>
+                <td id = "p1servesBroken"> 0 </td>
+                <td id = "p2servesBroken"> 0 </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+    </div>
+
+    <div class="row col-md-12 text-center">
+        <button type="button" class="btn btn-warning btn-lg"  id="endmatch"> <a href="playbyplay.html" style="color: white"> Click to View Play-by-Play Data </a> </button>
+    </div>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src = "app.js">
+
+    </script>
+  </body>
+</html>
