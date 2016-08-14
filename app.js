@@ -69,6 +69,8 @@ $(document).ready(function() {
   var playCount = 0;
 
   $p1serveButton.on('click', function(event){
+    // window.open('playbyplay.html');
+    // window.focus();
     $p1baseline.append('<server id="p1serving"> SERVING </server>');
     p1serving = true;
     $('#p2ace').toggle();
@@ -207,6 +209,11 @@ $(document).ready(function() {
   // End Firebase Name + Stat Linking
 
 // End Firebase Code
+
+// To open PlayByPlay in separate window
+$('#toPlayByPlay').on('click', function(e){
+  console.log('hello')
+})
 
 // Active Set Selector Function
   function activeSetSelector(activeSet) {
@@ -426,7 +433,7 @@ $(document).ready(function() {
         gamesWon: p1gamesWon
       });
       $lastplay.text(p1Name + ' serves an Ace!');
-      playByPlayRef.set({
+      playByPlayRef.push({
         play: p1Name + ' serves an Ace!',
         p1sets: $p1setsWon.text(),
         p2sets: $p2setsWon.text(),
@@ -469,7 +476,7 @@ $(document).ready(function() {
         servesBroken: p2servesBroken
       })
       $lastplay.text(p1Name + ' takes the point with a winner.');
-      playByPlayRef.set({
+      playByPlayRef.push({
         play: p1Name + ' takes the point with a winner.',
         p1sets: $p1setsWon.text(),
         p2sets: $p2setsWon.text(),
@@ -492,7 +499,7 @@ $(document).ready(function() {
         servesBroken: p2servesBroken
       });
       $lastplay.text(p2Name + ' commits an unforced error. ' + p1Name + ' takes the point.' );
-      playByPlayRef.set({
+      playByPlayRef.push({
         play: p2Name + ' commits an unforced error. ' + p1Name + ' takes the point.',
         p1sets: $p1setsWon.text(),
         p2sets: $p2setsWon.text(),
@@ -509,7 +516,7 @@ $(document).ready(function() {
         faults: p1totalFaults
       });
       $lastplay.text(p1Name + " faults. It's his first fault of this point and he will serve again.");
-      playByPlayRef.set({
+      playByPlayRef.push({
         play: p1Name + " faults. It's his first fault of this point and he will serve again.",
         p1sets: $p1setsWon.text(),
         p2sets: $p2setsWon.text(),
@@ -531,7 +538,7 @@ $(document).ready(function() {
           gamesWon: p2gamesWon,
         });
         $lastplay.text(p1Name + " double-faults! " + p2Name + " takes the point.");
-        playByPlayRef.set({
+        playByPlayRef.push({
           play: p1Name + " double-faults! " + p2Name + " takes the point.",
           p1sets: $p1setsWon.text(),
           p2sets: $p2setsWon.text(),
@@ -597,7 +604,7 @@ $(document).ready(function() {
         gamesWon: p2gamesWon
       });
       $lastplay.text(p2Name + ' serves an Ace!');
-      playByPlayRef.set({
+      playByPlayRef.push({
         play: p2Name + ' serves an Ace!',
         p1sets: $p1setsWon.text(),
         p2sets: $p2setsWon.text(),
@@ -640,7 +647,7 @@ $(document).ready(function() {
         servesBroken: p1servesBroken
       });
       $lastplay.text(p2Name + ' takes the point with a winner.');
-      playByPlayRef.set({
+      playByPlayRef.push({
         play: p2Name + ' takes the point with a winner.',
         p1sets: $p1setsWon.text(),
         p2sets: $p2setsWon.text(),
@@ -663,7 +670,7 @@ $(document).ready(function() {
         gamesWon: p2gamesWon
       });
       $lastplay.text(p1Name + ' commits an unforced error. ' + p2Name + ' takes the point.' );
-      playByPlayRef.set({
+      playByPlayRef.push({
         play: p1Name + ' commits an unforced error. ' + p2Name + ' takes the point.',
         p1sets: $p1setsWon.text(),
         p2sets: $p2setsWon.text(),
@@ -680,7 +687,7 @@ $(document).ready(function() {
         faults: p2totalFaults
       });
       $lastplay.text(p2Name + " faults. It's his first fault of this point and he will serve again.");
-      playByPlayRef.set({
+      playByPlayRef.push({
         play: p2Name + " faults. It's his first fault of this point and he will serve again.",
         p1sets: $p1setsWon.text(),
         p2sets: $p2setsWon.text(),
@@ -702,7 +709,7 @@ $(document).ready(function() {
           gamesWon: p1gamesWon
         });
         $lastplay.text(p2Name + " double-faults! " + p1Name + " takes the point.");
-        playByPlayRef.set({
+        playByPlayRef.push({
           play: p2Name + " double-faults! " + p1Name + " takes the point.",
           p1sets: $p1setsWon.text(),
           p2sets: $p2setsWon.text(),
