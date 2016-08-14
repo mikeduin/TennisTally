@@ -117,6 +117,7 @@ $(document).ready(function() {
 
   // Begin Firebase Name + Stat Linking
   $('#playerForm').on('submit', function(event) {
+    myDataRef.remove();
     var playerOneName = $('#playerOneName').val();
     var playerTwoName = $('#playerTwoName').val();
     var playerOneEmail = $('#playerOneEmail').val();
