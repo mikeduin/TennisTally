@@ -46,7 +46,7 @@
     </div><!-- /.modal -->
 
   <div class="row" id = "scoreboard">
-    <div class="col-xs-2 text-center">
+    <div class="col-xs-12 col-sm-4 col-md-2 text-center">
       <h4> <em> Current Game </em> <small></small></h4>
       <table class = "table table-condensed table-bordered">
         <thead>
@@ -67,7 +67,7 @@
       </table>
     </div>
 
-    <scoreboard class="col-xs-6 col-xs-offset-1">
+    <scoreboard class="col-xs-12 col-sm-7 col-sm-offset-1 col-md-6 col-md-offset-1">
       <h4 class = "text-center"> <strong> SCOREBOARD </strong> <small></small></h4>
       <table class = "table table-bordered table-condensed">
         <thead>
@@ -104,7 +104,7 @@
       </table>
     </scoreboard>
 
-    <div class="col-xs-1 col-xs-offset-1">
+    <div class="col-xs-12 col-md-1 col-md-offset-1 text-center">
       <br>
       <br>
       <br>
@@ -114,16 +114,14 @@
 
   <div class="row">
     <alertbar class="col-xs-12 text-center" id="alertbar" style="font-size: 18px; font-weight: bold; padding-top: 5px">
-
     </alertbar>
-
   </div>
 
   <p1buttons class="row">
-    <div class="col-xs-4 col-xs-offset-2 text-right">
-      <h1 style="position: absolute; margin-top: 2%; margin-left: 15%" id="p1gameAction"> Player 1 <small></small></h1>
+    <div class="col-xs-12 col-md-4 col-md-offset-2 text-center">
+      <h1 id="p1gameAction"> Player 1 <small></small></h1>
     </div>
-      <div class="col-xs-4 text-center">
+    <div class="col-xs-12 col-md-6 col-lg-4 text-center">
       <button1 type="button" class="btn btn-danger btn-lg" id = "p1fault">Fault</button1>
       <button1 type="button" class="btn btn-success btn-lg" id = "p1ace">Ace</button1>
       <button1 type="button" class="btn btn-success btn-lg" id = "p1winner">Winner</button1>
@@ -131,35 +129,43 @@
     </div>
   </p1buttons>
 
-  <br>
-
   <div class="row col-xs-12" style="position: relative">
-      <tenniscourt class="col-xs-8">
-        <baseline class="row col-xs-4 col-xs-offset-4" id="p1baseline">
+    <tenniscourt class="col-xs-10 col-md-8">
+      <div class="row">
+        <baseline class="col-xs-8 col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-4" id="p1baseline">
         </baseline>
-        <servebox class ="col-xs-2 col-xs-offset-4">
+      </div>
+      <div class="row">
+        <servebox class="col-xs-4 col-sm-3 col-sm-offset-2 col-md-2 col-md-offset-4">
         </servebox>
-        <servebox class ="col-xs-2">
+        <servebox class ="col-md-2 col-sm-3 col-xs-4">
         </servebox>
-        <net class = "row col-xs-4 col-xs-offset-4">
+      </div>
+      <div class="row">
+        <net class = "col-xs-8 col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-4">
         </net>
-        <servebox class ="col-xs-2 col-xs-offset-4">
+      </div>
+      <div class="row">
+        <servebox class="col-xs-4 col-sm-3 col-sm-offset-2 col-md-2 col-md-offset-4">
         </servebox>
-        <servebox class ="col-xs-2">
+        <servebox class ="col-md-2 col-sm-3 col-xs-4">
         </servebox>
-        <baseline class="row col-xs-4 col-xs-offset-4" id="p2baseline">
+      </div>
+      <div class="row">
+        <baseline class="col-xs-8 col-sm-6 col-sm-offset-2 col-md-4 col-md-offset-4" id="p2baseline">
         </baseline>
-      </tenniscourt>
-      <playbox class="col-xs-4 text-left" style="position: absolute; margin-top: 50px; margin-left: -175px">
-        <h1 class = "text-center"> <strong> LAST PLAY </strong> <br> <small id = "lastplay"> <em> waiting for match to begin </em> </small> </h3>
-      </playbox>
+      </div>
+    </tenniscourt>
+    <playbox class="col-xs-4 text-center">
+      <span class = "text-center"> <b> LAST PLAY </b> <br> <small id = "lastplay"> <em> waiting for match to begin </em> </small> </span>
+    </playbox>
   </div>
 
   <p2buttons class="row">
-    <div class="col-xs-4 col-xs-offset-2 text-right">
-      <h1 style="position: absolute; margin-top: 2%; margin-left: 15%" id="p2gameAction"> Player 2 <small></small></h1>
+    <div class="col-xs-12 col-md-4 col-md-offset-2 text-center">
+      <h1 id="p2gameAction"> Player 2 <small></small></h1>
     </div>
-    <div class="col-xs-4 text-center">
+    <div class="col-xs-12 col-md-6 col-lg-4 text-center">
       <button2 type="button" class="btn btn-danger btn-lg" id = "p2fault">Fault</button2>
       <button2 type="button" class="btn btn-success btn-lg" id = "p2ace">Ace</button2>
       <button2 type="button" class="btn btn-success btn-lg" id = "p2winner">Winner</button2>

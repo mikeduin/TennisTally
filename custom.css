@@ -4,13 +4,105 @@
 
 }*/
 
+@media screen and (min-width: 300px) {
+  .tennis-ball {
+    width: 8vw;
+    height: 8vw;
+  }
+
+  .welcome {
+    font-size: 8vw;
+  }
+
+  #endmatch {
+    margin-top: -30%;
+  }
+
+  tenniscourt {
+    margin-top: 5%;
+  }
+
+  playbox {
+    margin-top: 5%;
+    margin-left: -20%;
+    font-size: 6vw
+  }
+
+  playbox small {
+    font-size: 4vw
+  }
+}
+
+@media screen and (min-width: 700px) {
+  #endmatch {
+    margin-top: -10%;
+  }
+
+  .tennis-ball {
+    width: 6vw;
+    height: 6vw;
+  }
+
+  .welcome {
+    font-size: 6vw;
+  }
+
+  playbox {
+    margin-top: 10%;
+    margin-left: -20%;
+    font-size: 4vw
+  }
+
+  playbox small {
+    font-size: 2.5vw
+  }
+
+}
+
+@media screen and (min-width: 1000px) {
+  .welcome {
+    font-size: 4.5vw;
+  }
+
+  .tennis-ball {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  p1buttons button1, p2buttons button2 {
+    margin-top: 4%;
+  }
+
+  tenniscourt {
+    margin-top: 0%;
+  }
+
+  playbox {
+    margin-top: 5%;
+    margin-left: -10%;
+    font-size: 3vw
+  }
+
+  playbox small {
+    font-size: 2vw
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  playbox {
+    margin-top: 2%;
+  }
+}
+
+
 baseline {
   border: solid #FCFCFC 1px;
   height: 60px;
   background-color: #6b8c00;
   background-image: url("http://www.transparenttextures.com/patterns/clean-gray-paper.png");
   padding-top: 10px;
-  }
+  padding-right: 0px;
+}
 
 servebox {
   border: solid #FCFCFC 1px;
@@ -38,7 +130,7 @@ server {
   background-color: #FFFF00;
   font-size: 24px;
   font-weight: bold;
-  margin-left: 30%;
+  margin-left: 15%;
 }
 
 .fade {
